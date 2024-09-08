@@ -1,1 +1,1 @@
-# Unofficial tips and trick page of the PSM team
+# Unofficial tips and tricks page of the PSM team

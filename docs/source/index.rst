@@ -1,16 +1,9 @@
-.. psm-tips documentation master file, created by
-   sphinx-quickstart on Sun Sep  8 12:26:50 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to psm-tips's documentation!
-====================================
+Unofficial tips and tricks page of the PSM team
+===============================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-
 
 Indices and tables
 ==================

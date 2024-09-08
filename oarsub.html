@@ -2,15 +2,18 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-        <title>Index &mdash; PSM tips and trics page</title>
+        <title>OARSUB tips &mdash; PSM tips and trics page</title>
     
     <link rel="stylesheet" type="text/css" href="_static/dist/fontawesome.css" />
       <link rel="stylesheet" type="text/css" href="_static/dist/theme.css?v=ea6a6c20" />
-            <link rel="index" title="Index" href="#" />
+            <link rel="index" title="Index" href="genindex.html" />
             <link rel="search" title="Search" href="search.html" />
             <link rel="top" title="PSM tips and trics page" href="#" />
+            <link rel="prev" title="Unofficial tips and tricks page of the PSM team" href="index.html" />
     </head>
 <body>
     <script type="text/javascript" src="_static/dist/blocking.js"></script>
@@ -54,8 +57,8 @@
 </div><div class="site-toc">
     <nav class="toc mt-3" aria-label="Main menu">
         <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="oarsub.html">OARSUB tips</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OARSUB tips</a></li>
 </ul>
 
     </nav>
@@ -76,7 +79,7 @@
                         <nav aria-label="breadcrumb">
     <ol class="breadcrumb m-0 p-0 bg-transparent">
         <li class="breadcrumb-item"><a href="index.html">Docs</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Index</li>
+        <li class="breadcrumb-item active" aria-current="page">OARSUB tips</li>
     </ol>
 </nav>
                     </div>
@@ -88,9 +91,13 @@
                             <span class="dark-only"><i class="fas fa-sun"></i> Light mode</span>
                             <span class="light-only"><i class="fas fa-moon"></i> Dark mode</span>
                         </button>
-    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/wagtail/sphinx_wagtail_theme/blob/main/docs/genindex" rel="nofollow">
+    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/wagtail/sphinx_wagtail_theme/blob/main/docs/oarsub.rst" rel="nofollow">
         <span class="btn-icon"><span class="fab fa-github"></span></span>
         <span class="btn-text">Edit on GitHub</span>
+    </a>
+    <a class="btn btn-sm btn-light text-decoration-none" href="_sources/oarsub.rst.txt" rel="nofollow">
+        <span class="btn-icon"><span class="fas fa-code"></span></span>
+        <span class="btn-text">View source</span>
     </a>
                         
                     </div>
@@ -103,13 +110,37 @@
                 <div class="row">
                     <div class="col-12 col-lg-9 order-last order-lg-first rst-content">
                         <main role="main" id="main">
-    <h1 id="index">Index</h1>
-    <div class="genindex-jumpbox">
-        
-    </div>
+    <section id="oarsub-tips">
+<h1>OARSUB tips<a class="headerlink" href="#oarsub-tips" title="Link to this heading">¶</a></h1>
+<section id="cancel-all-jobs">
+<h2>Cancel all jobs<a class="headerlink" href="#cancel-all-jobs" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>oardel
+</pre></div>
+</div>
+<p>where username should be replaced by your ID.</p>
+</section>
+</section>
+
 </main>
-                        
+                        <nav aria-label="Page navigation" class="py-4 my-5 clearfix font-weight-bold border-top">
+    <a class="float-left" href="index.html" title="Previous">
+        <span aria-hidden="true">←&nbsp;</span>Unofficial tips and tricks page of the PSM team
+    </a>
+</nav>
                     </div>
+                    
+                    <nav class="col-12 col-lg-3 pb-4">
+                        <div class="sticky-top toc page-toc" aria-labelledby="page-toc-heading">
+                            <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
+                            <ul>
+<li><a class="reference internal" href="#">OARSUB tips</a><ul>
+<li><a class="reference internal" href="#cancel-all-jobs">Cancel all jobs</a></li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                    </nav>
                     
                 </div>
             </div>

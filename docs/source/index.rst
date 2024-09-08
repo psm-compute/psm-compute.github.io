@@ -5,6 +5,8 @@ Unofficial tips and tricks page of the PSM team
    :maxdepth: 2
    :caption: Contents:
 
+   oarsub
+
 Indices and tables
 ==================
 

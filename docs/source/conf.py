@@ -19,6 +19,10 @@ html_theme_options = dict(
     # logo_width = 45,
 )
 
+html_theme_options = dict(
+    github_url = "https://github.com/psm-compute/psm-compute.github.io"
+)
+
 html_theme = 'sphinx_wagtail_theme'
 html_static_path = ['_static']
 html_title = "PSM tips and trics page"

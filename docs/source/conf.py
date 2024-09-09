@@ -20,7 +20,7 @@ html_theme_options = dict(
 )
 
 html_theme_options = dict(
-    github_url = "https://github.com/psm-compute/psm-compute.github.io"
+    github_url = "https://github.com/psm-compute/psm-compute.github.io/tree/main/docs"
 )
 
 html_theme = 'sphinx_wagtail_theme'

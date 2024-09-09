@@ -15,3 +15,9 @@ start a discussion on |GitHub_discussion|
 
    oar
    git
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contributors:
+
+   sphinx

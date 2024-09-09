@@ -113,6 +113,135 @@
                         <main role="main" id="main">
     <section id="git-tips">
 <h1>GIT tips<a class="headerlink" href="#git-tips" title="Link to this heading">¶</a></h1>
+<section id="getting-started-with-git-and-github">
+<h2>Getting Started with Git and GitHub<a class="headerlink" href="#getting-started-with-git-and-github" title="Link to this heading">¶</a></h2>
+<section id="set-up-your-ssh-key">
+<h3>1. Set Up Your SSH Key<a class="headerlink" href="#set-up-your-ssh-key" title="Link to this heading">¶</a></h3>
+<p>To securely connect with GitHub, you’ll need to add your SSH key to your GitHub account. Here you can find how to <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">add your public key</a> .</p>
+</section>
+<section id="clone-a-github-repository">
+<h3>2. Clone a GitHub Repository<a class="headerlink" href="#clone-a-github-repository" title="Link to this heading">¶</a></h3>
+<p>Navigate to the directory where you want to download the repository, then use the <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:psm-compute/psm-compute.github.io.git
+</pre></div>
+</div>
+<p>This command will create a copy of the repository in your specified directory.</p>
+</section>
+<section id="check-the-status-of-your-repository">
+<h3>3. Check the Status of Your Repository<a class="headerlink" href="#check-the-status-of-your-repository" title="Link to this heading">¶</a></h3>
+<p>After cloning, it’s a good practice to check the status of your repository to see if there are any changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+</section>
+<section id="create-and-switch-to-a-new-branch">
+<h3>4. Create and Switch to a New Branch<a class="headerlink" href="#create-and-switch-to-a-new-branch" title="Link to this heading">¶</a></h3>
+<p>To make changes without affecting the main branch, create a new branch and switch to it. Let’s make a test updating <cite>README.md</cite> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>update_readme
+git<span class="w"> </span>checkout<span class="w"> </span>update_readme
+</pre></div>
+</div>
+</section>
+<section id="edit-files-and-stage-changes">
+<h3>5. Edit Files and Stage Changes<a class="headerlink" href="#edit-files-and-stage-changes" title="Link to this heading">¶</a></h3>
+<p>Make the necessary edits to your files. For example, to edit the <cite>README.md</cite> file, use a text editor like <cite>vi</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi<span class="w"> </span>README.md
+</pre></div>
+</div>
+<p>After editing, check the status again to see the changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+<p>Stage the changes to prepare them for commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>README.md
+</pre></div>
+</div>
+</section>
+<section id="commit-and-push-changes">
+<h3>6. Commit and Push Changes<a class="headerlink" href="#commit-and-push-changes" title="Link to this heading">¶</a></h3>
+<p>Commit your changes with a descriptive message:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Test change README.md&quot;</span>
+</pre></div>
+</div>
+<p>Next, push your changes to GitHub. If it’s the first time you’re pushing from this branch, you’ll need to set the upstream branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
+</pre></div>
+</div>
+<p>If you encounter an error, you’ll typically need to set the upstream for the branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>update_readme
+</pre></div>
+</div>
+</section>
+<section id="create-a-pull-request">
+<h3>8. Create a Pull Request<a class="headerlink" href="#create-a-pull-request" title="Link to this heading">¶</a></h3>
+<p>Finally, open your web browser and navigate to the GitHub page for this project:</p>
+<p><a class="reference external" href="https://github.com/psm-compute/psm-compute.github.io">https://github.com/psm-compute/psm-compute.github.io</a></p>
+<p>After pushing your changes, you should see a message indicating the recent pushes. Click on <strong>“Compare &amp; pull request”</strong>.</p>
+<p>On the right side of the page, select your reviewers, and add a description if needed. This will create a pull request for your changes to be reviewed and merged.</p>
+</section>
+<section id="delete-the-branch-locally-optional">
+<h3>7. Delete the Branch Locally (Optional)<a class="headerlink" href="#delete-the-branch-locally-optional" title="Link to this heading">¶</a></h3>
+<p>If you no longer need the branch locally, you can delete it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>update_readme
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modifying-the-html-webpage">
+<h2>Modifying the HTML Webpage<a class="headerlink" href="#modifying-the-html-webpage" title="Link to this heading">¶</a></h2>
+<section id="compile-the-html-webpage-locally">
+<h3>1. Compile the HTML Webpage Locally<a class="headerlink" href="#compile-the-html-webpage-locally" title="Link to this heading">¶</a></h3>
+<p>To compile the HTML files locally, navigate to the parent directory of your project and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
+</pre></div>
+</div>
+<p>This command will generate the HTML files for your webpage.</p>
+<p><strong>Troubleshooting:</strong></p>
+<ul>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> command fails, you might need to install the necessary dependencies first. You can do this by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="view-the-compiled-html">
+<h3>2. View the Compiled HTML<a class="headerlink" href="#view-the-compiled-html" title="Link to this heading">¶</a></h3>
+<p>Once the compilation is successful, you can view the HTML files by navigating to the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> directory. Open the files in this folder with your preferred web browser to see your webpage.</p>
+</section>
+<section id="modify-the-documentation">
+<h3>3. Modify the Documentation<a class="headerlink" href="#modify-the-documentation" title="Link to this heading">¶</a></h3>
+<p><strong>Important:</strong></p>
+<ul class="simple">
+<li><p><strong>Never modify files directly in the</strong> <code class="docutils literal notranslate"><span class="pre">html</span></code> <strong>folder.</strong></p></li>
+<li><p>Always make changes in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> folder, which contains the source files used to generate the HTML.</p></li>
+</ul>
+<p><strong>Steps for Modifying Content:</strong></p>
+<ol class="arabic">
+<li><p><strong>Create a New</strong> <code class="docutils literal notranslate"><span class="pre">.rst</span></code> <strong>File:</strong></p>
+<p>If you need to add new content, you can create a new <code class="docutils literal notranslate"><span class="pre">.rst</span></code> file in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> directory. Use an existing file, such as <code class="docutils literal notranslate"><span class="pre">oar.rst</span></code>, as a template for the new file.</p>
+<ul class="simple">
+<li><p><strong>Formatting Tips:</strong> For guidance on formatting <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files, refer to <a class="reference external" href="https://developer.lsst.io/restructuredtext/style.html">appropriate documentation</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Update the</strong> <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> <strong>File:</strong></p>
+<p>After adding or modifying <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files, update the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file to include your new content in the table of contents or navigation structure.</p>
+</li>
+</ol>
+</section>
+<section id="re-compile-the-html-webpage">
+<h3>4. Re-compile the HTML Webpage<a class="headerlink" href="#re-compile-the-html-webpage" title="Link to this heading">¶</a></h3>
+<p>Once you’ve made your changes, recompile the HTML files by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> again from the parent directory (<code class="docutils literal notranslate"><span class="pre">docs</span></code>), where the <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> file is located:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
+</pre></div>
+</div>
+<p>This will regenerate the HTML files with your latest modifications.</p>
+</section>
+<section id="id1">
+<h3>5. Commit and Push Changes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>After confirming your changes are reflected in the compiled HTML, it’s time to commit and push your changes to the repository. For detailed instructions on how to commit and push changes, see see <a class="reference external" href="#getting-started-with-git-and-github">Getting Started with Git and GitHub</a>.</p>
+</section>
+</section>
 </section>
 
 </main>
@@ -122,6 +251,37 @@
     </a>
 </nav>
                     </div>
+                    
+                    <nav class="col-12 col-lg-3 pb-4">
+                        <div class="sticky-top toc page-toc" aria-labelledby="page-toc-heading">
+                            <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
+                            <ul>
+<li><a class="reference internal" href="#">GIT tips</a><ul>
+<li><a class="reference internal" href="#getting-started-with-git-and-github">Getting Started with Git and GitHub</a><ul>
+<li><a class="reference internal" href="#set-up-your-ssh-key">1. Set Up Your SSH Key</a></li>
+<li><a class="reference internal" href="#clone-a-github-repository">2. Clone a GitHub Repository</a></li>
+<li><a class="reference internal" href="#check-the-status-of-your-repository">3. Check the Status of Your Repository</a></li>
+<li><a class="reference internal" href="#create-and-switch-to-a-new-branch">4. Create and Switch to a New Branch</a></li>
+<li><a class="reference internal" href="#edit-files-and-stage-changes">5. Edit Files and Stage Changes</a></li>
+<li><a class="reference internal" href="#commit-and-push-changes">6. Commit and Push Changes</a></li>
+<li><a class="reference internal" href="#create-a-pull-request">8. Create a Pull Request</a></li>
+<li><a class="reference internal" href="#delete-the-branch-locally-optional">7. Delete the Branch Locally (Optional)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modifying-the-html-webpage">Modifying the HTML Webpage</a><ul>
+<li><a class="reference internal" href="#compile-the-html-webpage-locally">1. Compile the HTML Webpage Locally</a></li>
+<li><a class="reference internal" href="#view-the-compiled-html">2. View the Compiled HTML</a></li>
+<li><a class="reference internal" href="#modify-the-documentation">3. Modify the Documentation</a></li>
+<li><a class="reference internal" href="#re-compile-the-html-webpage">4. Re-compile the HTML Webpage</a></li>
+<li><a class="reference internal" href="#id1">5. Commit and Push Changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                    </nav>
                     
                 </div>
             </div>

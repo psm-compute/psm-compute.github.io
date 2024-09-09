@@ -12,6 +12,5 @@ start a discussion on |GitHub_discussion|
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   :hidden:
 
    oar

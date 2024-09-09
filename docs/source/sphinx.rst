@@ -69,4 +69,4 @@ This will regenerate the HTML files with your latest modifications.
 5. Commit and Push Changes
 __________________________
 
-After confirming your changes are reflected in the compiled HTML, it's time to commit and push your changes to the repository. For detailed instructions on how to commit and push changes, see `Getting Started with Git and GitHub <#git-tips>`_.
+After confirming your changes are reflected in the compiled HTML, it's time to commit and push your changes to the repository. For detailed instructions on how to commit and push changes, see :ref:`git-tips`.

@@ -1,3 +1,5 @@
+.. _git-tips:
+
 GIT tips
 ========
 

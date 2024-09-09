@@ -114,6 +114,7 @@
 <h1>OAR tips<a class="headerlink" href="#oar-tips" title="Link to this heading">¶</a></h1>
 <section id="cancel-all-jobs">
 <h2>Cancel all jobs<a class="headerlink" href="#cancel-all-jobs" title="Link to this heading">¶</a></h2>
+<p>Cancel all your jobs at once by typing:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>oardel
 </pre></div>
 </div>

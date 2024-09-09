@@ -11,3 +11,7 @@ Cancel all your jobs at once by typing:
     oarstat -u username | awk '{print $1}' | xargs -n 1 oardel
 
 where username should be replaced by your ID.
+
+Submit multiple jobs
+--------------------
+

@@ -82,6 +82,18 @@ If you encounter an error, you'll typically need to set the upstream for the bra
 
     git push --set-upstream origin update_readme
 
+8. Create a Pull Request
+________________________
+
+Finally, open your web browser and navigate to the GitHub page for this project: 
+
+`<https://github.com/psm-compute/psm-compute.github.io>`_
+
+After pushing your changes, you should see a message indicating the recent pushes. Click on **"Compare & pull request"**.
+
+On the right side of the page, select your reviewers, and add a description if needed. This will create a pull request for your changes to be reviewed and merged.
+
+
 7. Delete the Branch Locally (Optional)
 _______________________________________
 
@@ -124,19 +136,19 @@ ____________________________
 
 **Important:** 
 
-- **Never modify files directly in the ``html`` folder.**
+- **Never modify files directly in the** ``html`` **folder.**
 - Always make changes in the ``docs/source`` folder, which contains the source files used to generate the HTML.
 
 **Steps for Modifying Content:**
 
-1. **Create a New ``.rst`` File:**
+1. **Create a New** ``.rst`` **File:**
 
    If you need to add new content, you can create a new ``.rst`` file in the ``docs/source`` directory. Use an existing file, such as ``oar.rst``, as a template for the new file.
 
    - **Formatting Tips:** For guidance on formatting ``.rst`` files, refer to `appropriate documentation <https://developer.lsst.io/restructuredtext/style.html>`_.
 
 
-2. **Update the ``index.rst`` File:**
+2. **Update the** ``index.rst`` **File:**
 
    After adding or modifying ``.rst`` files, update the ``index.rst`` file to include your new content in the table of contents or navigation structure.
 

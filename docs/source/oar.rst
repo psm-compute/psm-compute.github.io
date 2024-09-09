@@ -1,5 +1,5 @@
-OARSUB tips
-===========
+OAR tips
+========
 
 Cancel all jobs
 ---------------

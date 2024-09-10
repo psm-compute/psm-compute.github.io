@@ -1,6 +1,15 @@
 OAR tips
 ========
 
+This page collect some tips for running jobs using the OAR system of |GRICAD|.
+Feel free to add your own tricks to the list, or signal us any error.
+
+|GRICAD|
+
+.. |GRICAD| raw:: html
+
+    <a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a>
+
 Cancel All Jobs
 ---------------
 

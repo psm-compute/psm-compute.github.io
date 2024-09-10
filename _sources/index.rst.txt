@@ -3,7 +3,7 @@ Unofficial PSM tips and tricks
 
 This page shares a few tips and tricks that can help with performing simulations
 on GRICAD. If you're interested in contributing, please contact us via email or
-start a discussion on |GitHub_discussion|
+start a discussion on |GitHub_discussion|.
 
 .. |GitHub_discussion| raw:: html
 

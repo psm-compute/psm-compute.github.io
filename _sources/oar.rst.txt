@@ -10,8 +10,8 @@ Feel free to add your own tricks to the list, or signal us any error.
 
     <a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a>
 
-Cancel All Jobs
----------------
+Cancel All Your Jobs at Once
+----------------------------
 
 Cancel all your jobs at once by typing:
 
@@ -38,5 +38,6 @@ You can submit jobs with dependencies using the following example. Assume you ha
 
       oarsub -S ./job2.sh  -a $job1_id
 
-In this example, `job2.sh` will automatically wait for `job1.sh` to complete before starting, using the job ID captured in `job1_id`.
+In this example, `job2.sh` will automatically wait for `job1.sh` to complete
+before starting, using the job ID captured in `job1_id`.
 

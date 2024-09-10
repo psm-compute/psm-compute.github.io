@@ -6,13 +6,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-        <title>OAR tips &mdash; PSM tips and trics page</title>
+        <title>OAR tips &mdash; PSM tips and tricks page</title>
     
     <link rel="stylesheet" type="text/css" href="_static/dist/fontawesome.css" />
       <link rel="stylesheet" type="text/css" href="_static/dist/theme.css?v=ea6a6c20" />
             <link rel="index" title="Index" href="genindex.html" />
             <link rel="search" title="Search" href="search.html" />
-            <link rel="top" title="PSM tips and trics page" href="#" />
+            <link rel="top" title="PSM tips and tricks page" href="#" />
             <link rel="next" title="GIT tips" href="git.html" />
             <link rel="prev" title="Unofficial PSM tips and tricks" href="index.html" />
     </head>
@@ -121,8 +121,8 @@
 <p>This page collect some tips for running jobs using the OAR system of <a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a>.
 Feel free to add your own tricks to the list, or signal us any error.</p>
 <p><a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a></p>
-<section id="cancel-all-jobs">
-<h2>Cancel All Jobs<a class="headerlink" href="#cancel-all-jobs" title="Link to this heading">¶</a></h2>
+<section id="cancel-all-your-jobs-at-once">
+<h2>Cancel All Your Jobs at Once<a class="headerlink" href="#cancel-all-your-jobs-at-once" title="Link to this heading">¶</a></h2>
 <p>Cancel all your jobs at once by typing:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>oardel
 </pre></div>
@@ -144,7 +144,8 @@ Feel free to add your own tricks to the list, or signal us any error.</p>
 </div>
 </li>
 </ol>
-<p>In this example, <cite>job2.sh</cite> will automatically wait for <cite>job1.sh</cite> to complete before starting, using the job ID captured in <cite>job1_id</cite>.</p>
+<p>In this example, <cite>job2.sh</cite> will automatically wait for <cite>job1.sh</cite> to complete
+before starting, using the job ID captured in <cite>job1_id</cite>.</p>
 </section>
 </section>
 
@@ -164,7 +165,7 @@ Feel free to add your own tricks to the list, or signal us any error.</p>
                             <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
                             <ul>
 <li><a class="reference internal" href="#">OAR tips</a><ul>
-<li><a class="reference internal" href="#cancel-all-jobs">Cancel All Jobs</a></li>
+<li><a class="reference internal" href="#cancel-all-your-jobs-at-once">Cancel All Your Jobs at Once</a></li>
 <li><a class="reference internal" href="#submit-jobs-with-dependencies">Submit Jobs with Dependencies</a></li>
 </ul>
 </li>
@@ -187,27 +188,15 @@ Feel free to add your own tricks to the list, or signal us any error.</p>
                         
                             
                             
-                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/features/">Features</a></li>
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://liphy.univ-grenoble-alpes.fr">LIPhy</a></li>
                         
                             
                             
-                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/about-wagtail/"> About Wagtail</a></li>
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://liphy.univ-grenoble-alpes.fr/fr/recherche/equipes/psm-physique-statistique-et-modelisation">PSM</a></li>
                         
                             
                             
-                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/services/"> Services</a></li>
-                        
-                            
-                            
-                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/blog/"> Blog</a></li>
-                        
-                            
-                            
-                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/packages/"> Packages</a></li>
-                        
-                            
-                            
-                            <li class="nav-item"><a class="nav-link text-light"  href="https://wagtail.org/developers/"> Developers</a></li>
+                            <li class="nav-item"><a class="nav-link text-light"  href="https://github.com/psm-compute/psm-compute.github.io/blob/main/AUTHORS.md">AUTHORS</a></li>
                         
                     </ul>
                 </nav>

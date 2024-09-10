@@ -121,30 +121,31 @@
 <h2>Contributing to this Documentation<a class="headerlink" href="#contributing-to-this-documentation" title="Link to this heading">¶</a></h2>
 <section id="compile-the-html-webpage-locally">
 <h3>1. Compile the HTML Webpage Locally<a class="headerlink" href="#compile-the-html-webpage-locally" title="Link to this heading">¶</a></h3>
-<p>To compile the HTML files locally, navigate to the parent directory of your project and run:</p>
+<p>To compile the HTML files locally, navigate to the docs/ folder and type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
 </pre></div>
 </div>
 <p>This command will generate the HTML files for your webpage.</p>
 <p><strong>Troubleshooting:</strong></p>
-<ul>
-<li><p>If the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> command fails, you might need to install the necessary dependencies first. You can do this by running:</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> command fails, you might need to install the necessary
+dependencies first. You can do this by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
-</li>
-</ul>
 </section>
 <section id="view-the-compiled-html">
 <h3>2. View the Compiled HTML<a class="headerlink" href="#view-the-compiled-html" title="Link to this heading">¶</a></h3>
-<p>Once the compilation is successful, you can view the HTML files by navigating to the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> directory. Open the files in this folder with your preferred web browser to see your webpage.</p>
+<p>Once the compilation is successful, you can view the HTML files by navigating
+to the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> directory. Open the files in this folder with your
+preferred web browser to see the webpage.</p>
 </section>
 <section id="modify-the-documentation">
 <h3>3. Modify the Documentation<a class="headerlink" href="#modify-the-documentation" title="Link to this heading">¶</a></h3>
 <p><strong>Important:</strong></p>
 <ul class="simple">
 <li><p><strong>Never modify files directly in the</strong> <code class="docutils literal notranslate"><span class="pre">html</span></code> <strong>folder.</strong></p></li>
-<li><p>Always make changes in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> folder, which contains the source files used to generate the HTML.</p></li>
+<li><p>Always make changes in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> folder, which contains the source
+files used to generate the HTML.</p></li>
 </ul>
 <p><strong>Steps for Modifying Content:</strong></p>
 <ol class="arabic">
@@ -165,7 +166,8 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean
 </pre></div>
 </div>
-<p>Second recompile the HTML files by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> again from the parent directory (<code class="docutils literal notranslate"><span class="pre">docs</span></code>), where the <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> file is located:</p>
+<p>Second, recompile the HTML files by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> again from the parent
+directory (<code class="docutils literal notranslate"><span class="pre">docs/</span></code>), where the <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> file is located:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
 </pre></div>
 </div>
@@ -173,7 +175,9 @@
 </section>
 <section id="commit-and-push-changes">
 <h3>5. Commit and Push Changes<a class="headerlink" href="#commit-and-push-changes" title="Link to this heading">¶</a></h3>
-<p>After confirming your changes are reflected in the compiled HTML, it’s time to commit and push your changes to the repository. For detailed instructions on how to commit and push changes, see <a class="reference internal" href="git.html#git-tips"><span class="std std-ref">GIT tips</span></a>.</p>
+<p>After confirming your changes are reflected in the compiled HTML, it’s time to
+commit and push your changes to the repository. For detailed instructions on
+how to commit and push changes, see <a class="reference internal" href="git.html#git-tips"><span class="std std-ref">GIT tips</span></a>.</p>
 </section>
 </section>
 </section>

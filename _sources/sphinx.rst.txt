@@ -7,7 +7,7 @@ Contributing to this Documentation
 1. Compile the HTML Webpage Locally
 ____________________________________
 
-To compile the HTML files locally, navigate to the parent directory of your project and run:
+To compile the HTML files locally, navigate to the docs/ folder and type:
 
 .. code-block:: bash
 
@@ -17,16 +17,19 @@ This command will generate the HTML files for your webpage.
 
 **Troubleshooting:**
 
-- If the ``make html`` command fails, you might need to install the necessary dependencies first. You can do this by running:
+If the ``make html`` command fails, you might need to install the necessary
+dependencies first. You can do this by running:
 
-  .. code-block:: bash
+.. code-block:: bash
 
-      pip install -r requirements.txt
+    pip install -r requirements.txt
 
 2. View the Compiled HTML
 __________________________
 
-Once the compilation is successful, you can view the HTML files by navigating to the ``docs/build/html`` directory. Open the files in this folder with your preferred web browser to see your webpage.
+Once the compilation is successful, you can view the HTML files by navigating
+to the ``docs/build/html`` directory. Open the files in this folder with your
+preferred web browser to see the webpage.
 
 3. Modify the Documentation
 ____________________________
@@ -34,7 +37,8 @@ ____________________________
 **Important:** 
 
 - **Never modify files directly in the** ``html`` **folder.**
-- Always make changes in the ``docs/source`` folder, which contains the source files used to generate the HTML.
+- Always make changes in the ``docs/source`` folder, which contains the source
+  files used to generate the HTML.
 
 **Steps for Modifying Content:**
 
@@ -58,7 +62,8 @@ Once you've made your changes, first delete previous files to avoid conflict:
 
    make clean
 
-Second recompile the HTML files by running ``make html`` again from the parent directory (``docs``), where the ``make.bat`` file is located:
+Second, recompile the HTML files by running ``make html`` again from the parent
+directory (``docs/``), where the ``make.bat`` file is located:
 
 .. code-block:: bash
 
@@ -69,4 +74,6 @@ This will regenerate the HTML files with your latest modifications.
 5. Commit and Push Changes
 __________________________
 
-After confirming your changes are reflected in the compiled HTML, it's time to commit and push your changes to the repository. For detailed instructions on how to commit and push changes, see :ref:`git-tips`.
+After confirming your changes are reflected in the compiled HTML, it's time to
+commit and push your changes to the repository. For detailed instructions on
+how to commit and push changes, see :ref:`git-tips`.

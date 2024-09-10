@@ -119,15 +119,29 @@
     <section id="oar-tips">
 <h1>OAR tips<a class="headerlink" href="#oar-tips" title="Link to this heading">¶</a></h1>
 <section id="cancel-all-jobs">
-<h2>Cancel all jobs<a class="headerlink" href="#cancel-all-jobs" title="Link to this heading">¶</a></h2>
+<h2>Cancel All Jobs<a class="headerlink" href="#cancel-all-jobs" title="Link to this heading">¶</a></h2>
 <p>Cancel all your jobs at once by typing:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>oardel
 </pre></div>
 </div>
 <p>where username should be replaced by your ID.</p>
 </section>
-<section id="submit-multiple-jobs">
-<h2>Submit multiple jobs<a class="headerlink" href="#submit-multiple-jobs" title="Link to this heading">¶</a></h2>
+<section id="submit-jobs-with-dependencies">
+<h2>Submit Jobs with Dependencies<a class="headerlink" href="#submit-jobs-with-dependencies" title="Link to this heading">¶</a></h2>
+<p>You can submit jobs with dependencies using the following example. Assume you have two job scripts, <cite>job1.sh</cite> and <cite>job2.sh</cite>, that you wish to submit:</p>
+<ol class="arabic">
+<li><p>Submit <cite>job1.sh</cite> and capture its job ID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">job1_id</span><span class="o">=</span><span class="sb">`</span>oarsub<span class="w"> </span>-S<span class="w"> </span>./job1.sh<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>OAR_JOB_ID<span class="p">|</span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</pre></div>
+</div>
+</li>
+<li><p>Submit <cite>job2.sh</cite> so that it starts only after the completion of <cite>job1.sh</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarsub<span class="w"> </span>-S<span class="w"> </span>./job2.sh<span class="w">  </span>-a<span class="w"> </span><span class="nv">$job1_id</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>In this example, <cite>job2.sh</cite> will automatically wait for <cite>job1.sh</cite> to complete before starting, using the job ID captured in <cite>job1_id</cite>.</p>
 </section>
 </section>
 
@@ -147,8 +161,8 @@
                             <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
                             <ul>
 <li><a class="reference internal" href="#">OAR tips</a><ul>
-<li><a class="reference internal" href="#cancel-all-jobs">Cancel all jobs</a></li>
-<li><a class="reference internal" href="#submit-multiple-jobs">Submit multiple jobs</a></li>
+<li><a class="reference internal" href="#cancel-all-jobs">Cancel All Jobs</a></li>
+<li><a class="reference internal" href="#submit-jobs-with-dependencies">Submit Jobs with Dependencies</a></li>
 </ul>
 </li>
 </ul>

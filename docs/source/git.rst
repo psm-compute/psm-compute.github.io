@@ -84,7 +84,7 @@ If you encounter an error, you'll typically need to set the upstream for the bra
 
     git push --set-upstream origin update_readme
 
-8. Create a Pull Request
+7. Create a Pull Request
 ________________________
 
 Finally, open your web browser and navigate to the GitHub page for this project: 
@@ -96,7 +96,7 @@ After pushing your changes, you should see a message indicating the recent pushe
 On the right side of the page, select your reviewers, and add a description if needed. This will create a pull request for your changes to be reviewed and merged.
 
 
-7. Delete the Branch Locally (Optional)
+8. Delete the Branch Locally (Optional)
 _______________________________________
 
 If you no longer need the branch locally, you can delete it:

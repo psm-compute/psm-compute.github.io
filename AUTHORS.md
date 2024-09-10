@@ -1,2 +1,4 @@
-- Simon Gravelle
-- Cecilia Herrero
+# Contributors
+
+- Simon Gravelle (@simongravelle)
+- Cecilia Herrero (@ceciherr)

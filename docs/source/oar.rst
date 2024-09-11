@@ -1,30 +1,18 @@
 OAR tips
 ========
 
-This page collect some tips for running jobs using the OAR system of |GRICAD|.
-Feel free to add your own tricks to the list, or signal us any error.
-
-|GRICAD|
+This page collect some tips and tricks for managing jobs using the OAR system of |GRICAD|.
 
 .. |GRICAD| raw:: html
 
     <a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a>
 
-Cancel All Your Jobs at Once
-----------------------------
-
-Cancel all your jobs at once by typing:
-
-.. code:: bash
-
-    oarstat -u username | awk '{print $1}' | xargs -n 1 oardel
-
-where username should be replaced by your ID.
-
 Submit Jobs with Dependencies
 -----------------------------
 
-You can submit jobs with dependencies using the following example. Assume you have two job scripts, `job1.sh` and `job2.sh`, that you wish to submit:
+You can submit jobs with dependencies using the following example. Assuming that
+you have two job scripts, `job1.sh` and `job2.sh`, and that you wish to submit
+`job2.sh` `after` `job1.sh` is done.
 
 1. Submit `job1.sh` and capture its job ID:
 
@@ -38,6 +26,17 @@ You can submit jobs with dependencies using the following example. Assume you ha
 
       oarsub -S ./job2.sh  -a $job1_id
 
-In this example, `job2.sh` will automatically wait for `job1.sh` to complete
-before starting, using the job ID captured in `job1_id`.
+In this example, `job2.sh` will wait for `job1.sh` to complete
+before starting, using the job ID (`job1_id`).
+
+Cancel All Your Jobs at Once
+----------------------------
+
+You can cancel all your jobs at once by typing:
+
+.. code:: bash
+
+    oarstat -u username | awk '{print $1}' | xargs -n 1 oardel
+
+where username should be replaced by your ID.
 

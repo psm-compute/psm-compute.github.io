@@ -118,38 +118,49 @@
                         <main role="main" id="main">
     <section id="git-tips">
 <span id="id1"></span><h1>GIT tips<a class="headerlink" href="#git-tips" title="Link to this heading">¶</a></h1>
-<section id="getting-started-with-git-and-github">
-<h2>Getting Started with Git and GitHub<a class="headerlink" href="#getting-started-with-git-and-github" title="Link to this heading">¶</a></h2>
+<p>If you are new to Git and GitHub, this page helps you getting started by explaining
+how to make some modification to a repository. The explaining assumes that you
+are trying to modify this website, but it should work for most repositories.</p>
 <section id="set-up-your-ssh-key">
-<h3>1. Set Up Your SSH Key<a class="headerlink" href="#set-up-your-ssh-key" title="Link to this heading">¶</a></h3>
-<p>To securely connect with GitHub, you’ll need to add your SSH key to your GitHub account. Here you can find how to <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">add your public key</a> .</p>
+<h2>1. Set Up Your SSH Key<a class="headerlink" href="#set-up-your-ssh-key" title="Link to this heading">¶</a></h2>
+<p>To securely connect with GitHub, you’ll need to add your SSH key to your GitHub
+account. <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" target="_blank">here</a>, you can find how to add your public key to your account.</p>
 </section>
 <section id="clone-a-github-repository">
-<h3>2. Clone a GitHub Repository<a class="headerlink" href="#clone-a-github-repository" title="Link to this heading">¶</a></h3>
-<p>Navigate to the directory where you want to download the repository, then use the <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> command:</p>
+<h2>2. Clone a GitHub Repository<a class="headerlink" href="#clone-a-github-repository" title="Link to this heading">¶</a></h2>
+<p>If you are not a member of the <cite>psm-compute</cite> organization, fork
+the repository (i.e. create a duplicate of the repository in your own GitHub account),
+then clone it (see below).</p>
+<p>If you are a member, natigate to the <a href="https://github.com/psm-compute/psm-compute.github.io" target="_blank">here</a>, click on <cite>Code</cite>, then copy
+the <cite>SSH</cite> link and clone the repository using  <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:psm-compute/psm-compute.github.io.git
 </pre></div>
 </div>
-<p>This command will create a copy of the repository in your specified directory.</p>
+<p>This command will create a local copy of the repository on your computer.</p>
 </section>
 <section id="check-the-status-of-your-repository">
-<h3>3. Check the Status of Your Repository<a class="headerlink" href="#check-the-status-of-your-repository" title="Link to this heading">¶</a></h3>
-<p>After cloning, it’s a good practice to check the status of your repository to see if there are any changes:</p>
+<h2>3. Check the Status of Your Repository<a class="headerlink" href="#check-the-status-of-your-repository" title="Link to this heading">¶</a></h2>
+<p>From you computer, when you start making modifications to the files, it’s a
+you can check the status of your repository to see if there are any changes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
 </pre></div>
 </div>
 </section>
 <section id="create-and-switch-to-a-new-branch">
-<h3>4. Create and Switch to a New Branch<a class="headerlink" href="#create-and-switch-to-a-new-branch" title="Link to this heading">¶</a></h3>
-<p>To make changes without affecting the main branch, create a new branch and switch to it. Let’s make a test updating <cite>README.md</cite> file.</p>
+<h2>4. Create and Switch to a New Branch<a class="headerlink" href="#create-and-switch-to-a-new-branch" title="Link to this heading">¶</a></h2>
+<p>To make changes without affecting the main branch, create a new branch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>update_readme
-git<span class="w"> </span>checkout<span class="w"> </span>update_readme
+</pre></div>
+</div>
+<p>and then, switch to the new branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>update_readme
 </pre></div>
 </div>
 </section>
 <section id="edit-files-and-stage-changes">
-<h3>5. Edit Files and Stage Changes<a class="headerlink" href="#edit-files-and-stage-changes" title="Link to this heading">¶</a></h3>
-<p>Make the necessary edits to your files. For example, to edit the <cite>README.md</cite> file, use a text editor like <cite>vi</cite>:</p>
+<h2>5. Edit Files and Stage Changes<a class="headerlink" href="#edit-files-and-stage-changes" title="Link to this heading">¶</a></h2>
+<p>Make the necessary edits to the files. For example, to edit the <cite>README.md</cite> file,
+use a text editor like <cite>vi</cite>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi<span class="w"> </span>README.md
 </pre></div>
 </div>
@@ -163,34 +174,36 @@ git<span class="w"> </span>checkout<span class="w"> </span>update_readme
 </div>
 </section>
 <section id="commit-and-push-changes">
-<h3>6. Commit and Push Changes<a class="headerlink" href="#commit-and-push-changes" title="Link to this heading">¶</a></h3>
+<h2>6. Commit and Push Changes<a class="headerlink" href="#commit-and-push-changes" title="Link to this heading">¶</a></h2>
 <p>Commit your changes with a descriptive message:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Test change README.md&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Modified the README.md file&quot;</span>
 </pre></div>
 </div>
-<p>Next, push your changes to GitHub. If it’s the first time you’re pushing from this branch, you’ll need to set the upstream branch:</p>
+<p>Next, push your changes to GitHub:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
-<p>If you encounter an error, you’ll typically need to set the upstream for the branch:</p>
+<p>If it’s the first time you’re pushing from this branch, you’ll need to set the
+upstream branch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>update_readme
 </pre></div>
 </div>
 </section>
 <section id="create-a-pull-request">
-<h3>7. Create a Pull Request<a class="headerlink" href="#create-a-pull-request" title="Link to this heading">¶</a></h3>
-<p>Finally, open your web browser and navigate to the GitHub page for this project:</p>
-<p><a class="reference external" href="https://github.com/psm-compute/psm-compute.github.io">https://github.com/psm-compute/psm-compute.github.io</a></p>
-<p>After pushing your changes, you should see a message indicating the recent pushes. Click on <strong>“Compare &amp; pull request”</strong>.</p>
-<p>On the right side of the page, select your reviewers, and add a description if needed. This will create a pull request for your changes to be reviewed and merged.</p>
+<h2>7. Create a Pull Request<a class="headerlink" href="#create-a-pull-request" title="Link to this heading">¶</a></h2>
+<p>Finally, open your web browser and navigate to the GitHub repository (<a href="https://github.com/psm-compute/psm-compute.github.io" target="_blank">here</a>):
+After pushing your changes, you should see a message indicating the recent
+pushes. Click on <strong>“Compare &amp; pull request”</strong>. On the right side of the page,
+select your reviewers, and add a description if needed. This will create a pull
+request for your changes to be reviewed and merged.</p>
 </section>
 <section id="delete-the-branch-locally-optional">
-<h3>8. Delete the Branch Locally (Optional)<a class="headerlink" href="#delete-the-branch-locally-optional" title="Link to this heading">¶</a></h3>
-<p>If you no longer need the branch locally, you can delete it:</p>
+<h2>8. Delete the Branch Locally (Optional)<a class="headerlink" href="#delete-the-branch-locally-optional" title="Link to this heading">¶</a></h2>
+<p>Once your changes are merged with the main branch, and if you no longer need the
+branch locally, you can delete it:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>update_readme
 </pre></div>
 </div>
-</section>
 </section>
 </section>
 
@@ -210,7 +223,6 @@ git<span class="w"> </span>checkout<span class="w"> </span>update_readme
                             <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
                             <ul>
 <li><a class="reference internal" href="#">GIT tips</a><ul>
-<li><a class="reference internal" href="#getting-started-with-git-and-github">Getting Started with Git and GitHub</a><ul>
 <li><a class="reference internal" href="#set-up-your-ssh-key">1. Set Up Your SSH Key</a></li>
 <li><a class="reference internal" href="#clone-a-github-repository">2. Clone a GitHub Repository</a></li>
 <li><a class="reference internal" href="#check-the-status-of-your-repository">3. Check the Status of Your Repository</a></li>
@@ -219,8 +231,6 @@ git<span class="w"> </span>checkout<span class="w"> </span>update_readme
 <li><a class="reference internal" href="#commit-and-push-changes">6. Commit and Push Changes</a></li>
 <li><a class="reference internal" href="#create-a-pull-request">7. Create a Pull Request</a></li>
 <li><a class="reference internal" href="#delete-the-branch-locally-optional">8. Delete the Branch Locally (Optional)</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

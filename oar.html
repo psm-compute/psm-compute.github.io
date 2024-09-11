@@ -118,20 +118,12 @@
                         <main role="main" id="main">
     <section id="oar-tips">
 <h1>OAR tips<a class="headerlink" href="#oar-tips" title="Link to this heading">¶</a></h1>
-<p>This page collect some tips for running jobs using the OAR system of <a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a>.
-Feel free to add your own tricks to the list, or signal us any error.</p>
-<p><a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a></p>
-<section id="cancel-all-your-jobs-at-once">
-<h2>Cancel All Your Jobs at Once<a class="headerlink" href="#cancel-all-your-jobs-at-once" title="Link to this heading">¶</a></h2>
-<p>Cancel all your jobs at once by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>oardel
-</pre></div>
-</div>
-<p>where username should be replaced by your ID.</p>
-</section>
+<p>This page collect some tips and tricks for managing jobs using the OAR system of <a href="https://gricad-doc.univ-grenoble-alpes.fr/hpc/joblaunch/job_management/" target="_blank">GRICAD</a>.</p>
 <section id="submit-jobs-with-dependencies">
 <h2>Submit Jobs with Dependencies<a class="headerlink" href="#submit-jobs-with-dependencies" title="Link to this heading">¶</a></h2>
-<p>You can submit jobs with dependencies using the following example. Assume you have two job scripts, <cite>job1.sh</cite> and <cite>job2.sh</cite>, that you wish to submit:</p>
+<p>You can submit jobs with dependencies using the following example. Assuming that
+you have two job scripts, <cite>job1.sh</cite> and <cite>job2.sh</cite>, and that you wish to submit
+<cite>job2.sh</cite> <cite>after</cite> <cite>job1.sh</cite> is done.</p>
 <ol class="arabic">
 <li><p>Submit <cite>job1.sh</cite> and capture its job ID:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">job1_id</span><span class="o">=</span><span class="sb">`</span>oarsub<span class="w"> </span>-S<span class="w"> </span>./job1.sh<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>OAR_JOB_ID<span class="p">|</span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
@@ -144,8 +136,16 @@ Feel free to add your own tricks to the list, or signal us any error.</p>
 </div>
 </li>
 </ol>
-<p>In this example, <cite>job2.sh</cite> will automatically wait for <cite>job1.sh</cite> to complete
-before starting, using the job ID captured in <cite>job1_id</cite>.</p>
+<p>In this example, <cite>job2.sh</cite> will wait for <cite>job1.sh</cite> to complete
+before starting, using the job ID (<cite>job1_id</cite>).</p>
+</section>
+<section id="cancel-all-your-jobs-at-once">
+<h2>Cancel All Your Jobs at Once<a class="headerlink" href="#cancel-all-your-jobs-at-once" title="Link to this heading">¶</a></h2>
+<p>You can cancel all your jobs at once by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>oardel
+</pre></div>
+</div>
+<p>where username should be replaced by your ID.</p>
 </section>
 </section>
 
@@ -165,8 +165,8 @@ before starting, using the job ID captured in <cite>job1_id</cite>.</p>
                             <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
                             <ul>
 <li><a class="reference internal" href="#">OAR tips</a><ul>
-<li><a class="reference internal" href="#cancel-all-your-jobs-at-once">Cancel All Your Jobs at Once</a></li>
 <li><a class="reference internal" href="#submit-jobs-with-dependencies">Submit Jobs with Dependencies</a></li>
+<li><a class="reference internal" href="#cancel-all-your-jobs-at-once">Cancel All Your Jobs at Once</a></li>
 </ul>
 </li>
 </ul>

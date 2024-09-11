@@ -6,14 +6,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-        <title>Sphinx tips &mdash; PSM tips and tricks page</title>
+        <title>LAMMPS tips &mdash; PSM tips and tricks page</title>
     
     <link rel="stylesheet" type="text/css" href="_static/dist/fontawesome.css" />
       <link rel="stylesheet" type="text/css" href="_static/dist/theme.css?v=ea6a6c20" />
             <link rel="index" title="Index" href="genindex.html" />
             <link rel="search" title="Search" href="search.html" />
             <link rel="top" title="PSM tips and tricks page" href="#" />
-            <link rel="prev" title="GIT tips" href="git.html" />
+            <link rel="next" title="GIT tips" href="git.html" />
+            <link rel="prev" title="OAR tips" href="oar.html" />
     </head>
 <body>
     <script type="text/javascript" src="_static/dist/blocking.js"></script>
@@ -57,14 +58,14 @@
 </div><div class="site-toc">
     <nav class="toc mt-3" aria-label="Main menu">
         <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="oar.html">OAR tips</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lammps.html">LAMMPS tips</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LAMMPS tips</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">GIT tips</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributors:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx tips</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx tips</a></li>
 </ul>
 
     </nav>
@@ -85,7 +86,7 @@
                         <nav aria-label="breadcrumb">
     <ol class="breadcrumb m-0 p-0 bg-transparent">
         <li class="breadcrumb-item"><a href="index.html">Docs</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Sphinx tips</li>
+        <li class="breadcrumb-item active" aria-current="page">LAMMPS tips</li>
     </ol>
 </nav>
                     </div>
@@ -97,11 +98,11 @@
                             <span class="dark-only"><i class="fas fa-sun"></i> Light mode</span>
                             <span class="light-only"><i class="fas fa-moon"></i> Dark mode</span>
                         </button>
-    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/psm-compute/psm-compute.github.io/tree/main/docs/source/sphinx.rst" rel="nofollow">
+    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/psm-compute/psm-compute.github.io/tree/main/docs/source/lammps.rst" rel="nofollow">
         <span class="btn-icon"><span class="fab fa-github"></span></span>
         <span class="btn-text">Edit on GitHub</span>
     </a>
-    <a class="btn btn-sm btn-light text-decoration-none" href="_sources/sphinx.rst.txt" rel="nofollow">
+    <a class="btn btn-sm btn-light text-decoration-none" href="_sources/lammps.rst.txt" rel="nofollow">
         <span class="btn-icon"><span class="fas fa-code"></span></span>
         <span class="btn-text">View source</span>
     </a>
@@ -116,77 +117,73 @@
                 <div class="row">
                     <div class="col-12 col-lg-9 order-last order-lg-first rst-content">
                         <main role="main" id="main">
-    <section id="sphinx-tips">
-<h1>Sphinx tips<a class="headerlink" href="#sphinx-tips" title="Link to this heading">¶</a></h1>
-<section id="contributing-to-this-documentation">
-<h2>Contributing to this Documentation<a class="headerlink" href="#contributing-to-this-documentation" title="Link to this heading">¶</a></h2>
-<section id="compile-the-html-webpage-locally">
-<h3>1. Compile the HTML Webpage Locally<a class="headerlink" href="#compile-the-html-webpage-locally" title="Link to this heading">¶</a></h3>
-<p>To compile the HTML files locally, navigate to the docs/ folder and type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
-</pre></div>
-</div>
-<p>This command will generate the HTML files for your webpage.</p>
-<p><strong>Troubleshooting:</strong></p>
-<p>If the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> command fails, you might need to install the necessary
-dependencies first. You can do this by running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+    <section id="lammps-tips">
+<h1>LAMMPS tips<a class="headerlink" href="#lammps-tips" title="Link to this heading">¶</a></h1>
+<section id="choose-where-to-compile-lammps">
+<h2>Choose where to compile LAMMPS<a class="headerlink" href="#choose-where-to-compile-lammps" title="Link to this heading">¶</a></h2>
+<p>If the code must be accessed only by you, you can save it in your <code class="docutils literal notranslate"><span class="pre">/home/</span></code> folder on
+Dahu/Bigfoot. If you want the code to be available to all the member from
+your group, you can use <code class="docutils literal notranslate"><span class="pre">/bettik/PROJECTS/</span></code>. For instance, for the members of <cite>tamtam</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bettik/PROJECTS/pr-tamtam/
 </pre></div>
 </div>
 </section>
-<section id="view-the-compiled-html">
-<h3>2. View the Compiled HTML<a class="headerlink" href="#view-the-compiled-html" title="Link to this heading">¶</a></h3>
-<p>Once the compilation is successful, you can view the HTML files by navigating
-to the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> directory. Open the files in this folder with your
-preferred web browser to see the webpage.</p>
-</section>
-<section id="modify-the-documentation">
-<h3>3. Modify the Documentation<a class="headerlink" href="#modify-the-documentation" title="Link to this heading">¶</a></h3>
-<p><strong>Important:</strong></p>
-<ul class="simple">
-<li><p><strong>Never modify files directly in the</strong> <code class="docutils literal notranslate"><span class="pre">html</span></code> <strong>folder.</strong></p></li>
-<li><p>Always make changes in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> folder, which contains the source
-files used to generate the HTML.</p></li>
-</ul>
-<p><strong>Steps for Modifying Content:</strong></p>
-<ol class="arabic">
-<li><p><strong>Create a New</strong> <code class="docutils literal notranslate"><span class="pre">.rst</span></code> <strong>File:</strong></p>
-<p>If you need to add new content, you can create a new <code class="docutils literal notranslate"><span class="pre">.rst</span></code> file in the <code class="docutils literal notranslate"><span class="pre">docs/source</span></code> directory. Use an existing file, such as <code class="docutils literal notranslate"><span class="pre">oar.rst</span></code>, as a template for the new file.</p>
-<ul class="simple">
-<li><p><strong>Formatting Tips:</strong> For guidance on formatting <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files, refer to <a class="reference external" href="https://developer.lsst.io/restructuredtext/style.html">appropriate documentation</a>.</p></li>
-</ul>
-</li>
-<li><p><strong>Update the</strong> <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> <strong>File:</strong></p>
-<p>After adding or modifying <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files, update the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file to include your new content in the table of contents or navigation structure.</p>
-</li>
-</ol>
-</section>
-<section id="re-compile-the-html-webpage">
-<h3>4. Re-compile the HTML Webpage<a class="headerlink" href="#re-compile-the-html-webpage" title="Link to this heading">¶</a></h3>
-<p>Once you’ve made your changes, first delete previous files to avoid conflict:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>clean
+<section id="download-lammps">
+<h2>Download LAMMPS<a class="headerlink" href="#download-lammps" title="Link to this heading">¶</a></h2>
+<p>From the <a href="https://www.lammps.org/download.html" target="_blank">LAMMPS</a> webpage, download the version of your choice.
+For instance, from the terminal, download the last stable release:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://download.lammps.org/tars/lammps.tar.gz
+tar<span class="w"> </span>-xzvf<span class="w"> </span>lammps.tar.gz
 </pre></div>
 </div>
-<p>Second, recompile the HTML files by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> again from the parent
-directory (<code class="docutils literal notranslate"><span class="pre">docs/</span></code>), where the <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> file is located:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>html
+</section>
+<section id="compile-lammps">
+<h2>Compile LAMMPS<a class="headerlink" href="#compile-lammps" title="Link to this heading">¶</a></h2>
+<p>For compiling in serial, simply navidate to the <code class="docutils literal notranslate"><span class="pre">src/</span></code> folder, and type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>serial
 </pre></div>
 </div>
-<p>This will regenerate the HTML files with your latest modifications.</p>
+<p>For compilling in parallel, you will need to load manually openmpi and gcc using NIX:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/applis/site/nix.sh
+nix-shell<span class="w"> </span>-p<span class="w"> </span>openmpi<span class="w"> </span>-p<span class="w"> </span>gcc
+</pre></div>
+</div>
+<p>Then, from the <code class="docutils literal notranslate"><span class="pre">src/</span></code> folder, type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>mpi
+</pre></div>
+</div>
 </section>
-<section id="commit-and-push-changes">
-<h3>5. Commit and Push Changes<a class="headerlink" href="#commit-and-push-changes" title="Link to this heading">¶</a></h3>
-<p>After confirming your changes are reflected in the compiled HTML, it’s time to
-commit and push your changes to the repository. For detailed instructions on
-how to commit and push changes, see <a class="reference internal" href="git.html#git-tips"><span class="std std-ref">GIT tips</span></a>.</p>
-</section>
+<section id="run-lammps">
+<h2>Run LAMMPS<a class="headerlink" href="#run-lammps" title="Link to this heading">¶</a></h2>
+<p>Create a bash (<code class="docutils literal notranslate"><span class="pre">.sh</span></code>) file with the following content:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#OAR -n test</span>
+<span class="c1">#OAR -l /nodes=1/cpu=1/core=4,walltime=12:00:00</span>
+<span class="c1">#OAR --stdout log.out</span>
+<span class="c1">#OAR --stderr log.err</span>
+<span class="c1">#OAR --project tamtam</span>
+
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>/PATH-TO-LAMMPS/lmp_mpi<span class="w"> </span>-in<span class="w"> </span>input.lmp
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">input.lmp</span></code> is your LAMMPS input file, and there the project was assumed
+to be <cite>tamtam</cite> (to adapt to your case). Here, 4 CPU cores are requested,
+as well as a total duration of 12 hours. Then, make the file file executable with
+chmod and launch it using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./myfile.sh
+oarsub<span class="w"> </span>-S<span class="w"> </span>./myfile.sh
+</pre></div>
+</div>
 </section>
 </section>
 
 </main>
                         <nav aria-label="Page navigation" class="py-4 my-5 clearfix font-weight-bold border-top">
-    <a class="float-left" href="git.html" title="Previous">
-        <span aria-hidden="true">←&nbsp;</span>GIT tips
+    <a class="float-left" href="oar.html" title="Previous">
+        <span aria-hidden="true">←&nbsp;</span>OAR tips
+    </a>
+    <a class="float-right" href="git.html" title="Next">
+        GIT tips <span aria-hidden="true">&nbsp;→</span>
     </a>
 </nav>
                     </div>
@@ -195,15 +192,11 @@ how to commit and push changes, see <a class="reference internal" href="git.html
                         <div class="sticky-top toc page-toc" aria-labelledby="page-toc-heading">
                             <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
                             <ul>
-<li><a class="reference internal" href="#">Sphinx tips</a><ul>
-<li><a class="reference internal" href="#contributing-to-this-documentation">Contributing to this Documentation</a><ul>
-<li><a class="reference internal" href="#compile-the-html-webpage-locally">1. Compile the HTML Webpage Locally</a></li>
-<li><a class="reference internal" href="#view-the-compiled-html">2. View the Compiled HTML</a></li>
-<li><a class="reference internal" href="#modify-the-documentation">3. Modify the Documentation</a></li>
-<li><a class="reference internal" href="#re-compile-the-html-webpage">4. Re-compile the HTML Webpage</a></li>
-<li><a class="reference internal" href="#commit-and-push-changes">5. Commit and Push Changes</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">LAMMPS tips</a><ul>
+<li><a class="reference internal" href="#choose-where-to-compile-lammps">Choose where to compile LAMMPS</a></li>
+<li><a class="reference internal" href="#download-lammps">Download LAMMPS</a></li>
+<li><a class="reference internal" href="#compile-lammps">Compile LAMMPS</a></li>
+<li><a class="reference internal" href="#run-lammps">Run LAMMPS</a></li>
 </ul>
 </li>
 </ul>

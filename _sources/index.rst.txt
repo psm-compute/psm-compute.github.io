@@ -10,14 +10,15 @@ start a discussion on |GitHub_discussion|.
     <a href="https://github.com/orgs/psm-compute/discussions" target="_blank">GitHub</a>
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    oar
+   lammps
    git
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contributors:
 
    sphinx

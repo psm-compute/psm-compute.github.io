@@ -40,3 +40,6 @@ You can cancel all your jobs at once by typing:
 
 where username should be replaced by your ID.
 
+Launch Multiple Jobs
+--------------------
+

@@ -77,25 +77,38 @@ If one wants to launch the current job, one simply have to type:
     oarsub -S ./sub.sh
 
 and a single job with name *lmp-myvariable-0* will be send.
-To launch multiple simulations with different values of *myvariable*, one
-can create a second bash script containing:
+To launch multiple simulations with different values of *myvariable*,
+say 0, 1, and 2, one can create a second bash script, named *multi-sub.sh*,
+and containing:
 
 .. code:: bash
 
     #!/bin/bash
-    set -e  # Exit immediately if error
+    set -e
 
-    # Loop over a desired set of values for myvariable
     for myvariable in 0 1 2
     do
-        # Create a new line that will replace the line containing `myvariable` in the script sub.sh
+        # deal with OAR -n
+        newline='#OAR -n lmp-myvariable-'$myvariable
+        oldline=$(cat sub.sh | grep '#OAR -n lmp-myvariable-')
+        sed -i '/'"$oldline"'/c\'"$newline" sub.sh
+        # deal with myvariable
         newline='myvariable='$myvariable
-        # Find the current line in sub.sh that contains 'myvariable =', storing it in the variable oldline
-        # This assumes there is exactly one such line, otherwise the behavior may be unexpected
         oldline=$(cat sub.sh | grep 'myvariable =')
-        # Use sed to replace the old line with the new line (newline) in sub.sh
-        # This command searches for the line containing the value in oldline and replaces it with newline
         sed -i '/'"$oldline"'/c\'"$newline" sub.sh
         chmod +x sub.sh
         oarsub -S ./sub.sh
     done
+
+The *newline* command creates a new line that will replace the line
+containing *myvariable* in the script sub.sh
+The *oldline=* command finds the current line in sub.sh that contains 'myvariable =',
+storing it in the variable oldline. This assumes there is exactly one such line,
+otherwise the behavior may be unexpected. Then, sed is used to replace the old
+line with the new line (newline) in *sub.sh*.
+
+Then, simply run *multi-sub.sh* by typing:
+
+.. code:: bash
+
+    bash multi-sub.sh

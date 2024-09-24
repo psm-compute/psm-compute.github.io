@@ -53,7 +53,7 @@ Then, from the ``src/`` folder, type:
 Run LAMMPS
 ----------
 
-Create a bash (``.sh``) file with the following content:
+Create a bash file named *sub.sh* with the following content:
 
 .. code-block:: bash
 
@@ -69,15 +69,15 @@ Create a bash (``.sh``) file with the following content:
 
     mpirun -np 4 ${lmp} -in input.lmp
 
-where ``input.lmp`` is your LAMMPS input file, and there the project was assumed
+where ``input.lmp`` is your LAMMPS input file, and where the project was assumed
 to be `tamtam` (to adapt to your case). Here, 4 CPU cores are requested,
 as well as a total duration of 12 hours. Then, make the file file executable with
 chmod and launch it using:
 
 .. code-block:: bash
 
-    chmod +x ./myfile.sh
-    oarsub -S ./myfile.sh
+    chmod +x ./sub.sh
+    oarsub -S ./sub.sh
 
 Launch multiple jobs using bash
 _______________________________

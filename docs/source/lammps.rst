@@ -64,7 +64,10 @@ Create a bash (``.sh``) file with the following content:
     #OAR --stderr log.err
     #OAR --project tamtam
 
-    mpirun -np 4 /PATH-TO-LAMMPS/lmp_mpi -in input.lmp
+    # Path to the LAMMPS executable
+    lmp=/path/lmp_mpi
+
+    mpirun -np 4 ${lmp} -in input.lmp
 
 where ``input.lmp`` is your LAMMPS input file, and there the project was assumed
 to be `tamtam` (to adapt to your case). Here, 4 CPU cores are requested,
@@ -81,18 +84,19 @@ _______________________________
 
 Assuming that one has the job submission script named *sub.sh* with name *lmp-myvariable-0*,
 that launch a lammps input script named *input.lmp* by passing a variable
-named *myvariable* into it. Additionally, here the job ID is used as an input for the random seed, allowing for example different initial configurations:
+named *myvariable* into it. Additionally, here the job ID is used as an
+input for the random seed, allowing for example different initial configurations:
 
 .. code:: bash
 
     #!/bin/bash
     #OAR -n lmp-myvariable-0
-    #OAR -l /nodes=1/cpu=1/core=4,walltime=48:00:00
-    #OAR --stdout log-water.out
-    #OAR --stderr log-water.err
+    #OAR -l /nodes=1/cpu=1/core=4,walltime=12:00:00
+    #OAR --stdout log.out
+    #OAR --stderr log.err
     #OAR --project tamtam
 
-    # Path to the LAMMPS MPI executable
+    # Path to the LAMMPS executable
     lmp=/path/lmp_mpi
 
     myvariable=0

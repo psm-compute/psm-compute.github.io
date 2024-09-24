@@ -45,8 +45,8 @@ Launch Multiple Jobs
 
 Here, tips to efficiently launch multiple jobs are provided.
 
-Passing arguments
-_________________
+Batch Job Submission
+____________________
 
 Assuming that one has the job submission script named *sub.sh* with name *lmp-myvariable-0*,
 that launch a lammps input script named *input.lmp* by passing a variable

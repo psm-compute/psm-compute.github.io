@@ -40,3 +40,19 @@ You can cancel all your jobs at once by typing:
 
 where username should be replaced by your ID.
 
+Launch Multiple Jobs
+--------------------
+
+Here, tips to efficiently launch multiple jobs are provided.
+
+.. SG: this will be completed when Romain send me an example.
+
+.. code:: bash
+
+    #!/bin/bash
+    ...
+    #OAR --array 50
+
+    id=`echo "$OAR_JOB_ID - $OAR_ARRAY_ID + 2" | bc -l`  # <---- This id runs from 0 to 50, each job gets one, with which you can e.g. index a bash array
+    temperatures=(0.25 0.5 1 .... )
+    T=${temperatures[${id}]}

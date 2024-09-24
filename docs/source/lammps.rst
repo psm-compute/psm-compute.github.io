@@ -75,3 +75,71 @@ chmod and launch it using:
 
     chmod +x ./myfile.sh
     oarsub -S ./myfile.sh
+
+Launch multiple jobs using bash
+_______________________________
+
+Assuming that one has the job submission script named *sub.sh* with name *lmp-myvariable-0*,
+that launch a lammps input script named *input.lmp* by passing a variable
+named *myvariable* into it. Additionally, here the job ID is used as an input for the random seed, allowing for example different initial configurations:
+
+.. code:: bash
+
+    #!/bin/bash
+    #OAR -n lmp-myvariable-0
+    #OAR -l /nodes=1/cpu=1/core=4,walltime=48:00:00
+    #OAR --stdout log-water.out
+    #OAR --stderr log-water.err
+    #OAR --project tamtam
+
+    # Path to the LAMMPS MPI executable
+    lmp=/path/lmp_mpi
+
+    myvariable=0
+
+    # Run LAMMPS using MPI, with 4 processes, using the input from 'input.lmp'
+    mpirun -np 4 ${lmp} -in input.lmp -var nb2 ${myvariable} -var seedin $OAR_JOBID
+
+If one wants to launch the current job, one simply have to type:
+
+.. code:: bash
+
+    chmod +x sub.sh
+    oarsub -S ./sub.sh
+
+and a single job with name *lmp-myvariable-0* will be send.
+To launch multiple simulations with different values of *myvariable*,
+say 0, 1, and 2, one can create a second bash script, named *multi-sub.sh*,
+and containing:
+
+.. code:: bash
+
+    #!/bin/bash
+    set -e
+
+    for myvariable in 0 1 2
+    do
+        # deal with OAR -n
+        newline='#OAR -n lmp-myvariable-'$myvariable
+        oldline=$(cat sub.sh | grep '#OAR -n lmp-myvariable-')
+        sed -i '/'"$oldline"'/c\'"$newline" sub.sh
+        # deal with myvariable
+        newline='myvariable='$myvariable
+        oldline=$(cat sub.sh | grep 'myvariable =')
+        sed -i '/'"$oldline"'/c\'"$newline" sub.sh
+        chmod +x sub.sh
+        oarsub -S ./sub.sh
+    done
+
+The *newline* command creates a new line that will replace the line
+containing *myvariable* in the script sub.sh
+The *oldline=* command finds the current line in sub.sh that contains 'myvariable =',
+storing it in the variable oldline. This assumes there is exactly one such line,
+otherwise the behavior may be unexpected. Then, sed is used to replace the old
+line with the new line (newline) in *sub.sh*.
+
+Then, simply run *multi-sub.sh* by typing:
+
+.. code:: bash
+
+    bash multi-sub.sh

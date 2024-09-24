@@ -50,7 +50,7 @@ ____________________
 
 Assuming that one has the job submission script named *sub.sh* with name *lmp-myvariable-0*,
 that launch a lammps input script named *input.lmp* by passing a variable
-named *myvariable* into it:
+named *myvariable* into it. Additionally, here the job ID is used as an input for the random seed, allowing for example different initial configurations:
 
 .. code:: bash
 
@@ -67,7 +67,7 @@ named *myvariable* into it:
     myvariable=0
 
     # Run LAMMPS using MPI, with 4 processes, using the input from 'input.lmp'
-    mpirun -np 4 ${lmp} -in input.lmp -var nb2 ${myvariable}
+    mpirun -np 4 ${lmp} -in input.lmp -var nb2 ${myvariable} -var seedin $OAR_JOBID
 
 If one wants to launch the current job, one simply have to type:
 

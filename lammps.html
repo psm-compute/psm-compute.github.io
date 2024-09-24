@@ -155,7 +155,7 @@ nix-shell<span class="w"> </span>-p<span class="w"> </span>openmpi<span class="w
 </section>
 <section id="run-lammps">
 <h2>Run LAMMPS<a class="headerlink" href="#run-lammps" title="Link to this heading">¶</a></h2>
-<p>Create a bash (<code class="docutils literal notranslate"><span class="pre">.sh</span></code>) file with the following content:</p>
+<p>Create a bash file named <em>sub.sh</em> with the following content:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#OAR -n test</span>
 <span class="c1">#OAR -l /nodes=1/cpu=1/core=4,walltime=12:00:00</span>
@@ -163,17 +163,80 @@ nix-shell<span class="w"> </span>-p<span class="w"> </span>openmpi<span class="w
 <span class="c1">#OAR --stderr log.err</span>
 <span class="c1">#OAR --project tamtam</span>
 
-mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>/PATH-TO-LAMMPS/lmp_mpi<span class="w"> </span>-in<span class="w"> </span>input.lmp
+<span class="c1"># Path to the LAMMPS executable</span>
+<span class="nv">lmp</span><span class="o">=</span>/path/lmp_mpi
+
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="si">${</span><span class="nv">lmp</span><span class="si">}</span><span class="w"> </span>-in<span class="w"> </span>input.lmp
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">input.lmp</span></code> is your LAMMPS input file, and there the project was assumed
+<p>where <code class="docutils literal notranslate"><span class="pre">input.lmp</span></code> is your LAMMPS input file, and where the project was assumed
 to be <cite>tamtam</cite> (to adapt to your case). Here, 4 CPU cores are requested,
 as well as a total duration of 12 hours. Then, make the file file executable with
 chmod and launch it using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./myfile.sh
-oarsub<span class="w"> </span>-S<span class="w"> </span>./myfile.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./sub.sh
+oarsub<span class="w"> </span>-S<span class="w"> </span>./sub.sh
 </pre></div>
 </div>
+<section id="launch-multiple-jobs-using-bash">
+<h3>Launch multiple jobs using bash<a class="headerlink" href="#launch-multiple-jobs-using-bash" title="Link to this heading">¶</a></h3>
+<p>Assuming that one has the job submission script named <em>sub.sh</em> with name <em>lmp-myvariable-0</em>,
+that launch a lammps input script named <em>input.lmp</em> by passing a variable
+named <em>myvariable</em> into it. Additionally, here the job ID is used as an
+input for the random seed, allowing for example different initial configurations:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#OAR -n lmp-myvariable-0</span>
+<span class="c1">#OAR -l /nodes=1/cpu=1/core=4,walltime=12:00:00</span>
+<span class="c1">#OAR --stdout log.out</span>
+<span class="c1">#OAR --stderr log.err</span>
+<span class="c1">#OAR --project tamtam</span>
+
+<span class="c1"># Path to the LAMMPS executable</span>
+<span class="nv">lmp</span><span class="o">=</span>/path/lmp_mpi
+
+<span class="nv">myvariable</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># Run LAMMPS using MPI, with 4 processes, using the input from &#39;input.lmp&#39;</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="si">${</span><span class="nv">lmp</span><span class="si">}</span><span class="w"> </span>-in<span class="w"> </span>input.lmp<span class="w"> </span>-var<span class="w"> </span>nb2<span class="w"> </span><span class="si">${</span><span class="nv">myvariable</span><span class="si">}</span><span class="w"> </span>-var<span class="w"> </span>seedin<span class="w"> </span><span class="nv">$OAR_JOBID</span>
+</pre></div>
+</div>
+<p>If one wants to launch the current job, one simply have to type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>sub.sh
+oarsub<span class="w"> </span>-S<span class="w"> </span>./sub.sh
+</pre></div>
+</div>
+<p>and a single job with name <em>lmp-myvariable-0</em> will be send.
+To launch multiple simulations with different values of <em>myvariable</em>,
+say 0, 1, and 2, one can create a second bash script, named <em>multi-sub.sh</em>,
+and containing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-e
+
+<span class="k">for</span><span class="w"> </span>myvariable<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="c1"># deal with OAR -n</span>
+<span class="w">    </span><span class="nv">newline</span><span class="o">=</span><span class="s1">&#39;#OAR -n lmp-myvariable-&#39;</span><span class="nv">$myvariable</span>
+<span class="w">    </span><span class="nv">oldline</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span>sub.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;#OAR -n lmp-myvariable-&#39;</span><span class="k">)</span>
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="s2">&quot;</span><span class="nv">$oldline</span><span class="s2">&quot;</span><span class="s1">&#39;/c\&#39;</span><span class="s2">&quot;</span><span class="nv">$newline</span><span class="s2">&quot;</span><span class="w"> </span>sub.sh
+<span class="w">    </span><span class="c1"># deal with myvariable</span>
+<span class="w">    </span><span class="nv">newline</span><span class="o">=</span><span class="s1">&#39;myvariable=&#39;</span><span class="nv">$myvariable</span>
+<span class="w">    </span><span class="nv">oldline</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span>sub.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;myvariable =&#39;</span><span class="k">)</span>
+<span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="s2">&quot;</span><span class="nv">$oldline</span><span class="s2">&quot;</span><span class="s1">&#39;/c\&#39;</span><span class="s2">&quot;</span><span class="nv">$newline</span><span class="s2">&quot;</span><span class="w"> </span>sub.sh
+<span class="w">    </span>chmod<span class="w"> </span>+x<span class="w"> </span>sub.sh
+<span class="w">    </span>oarsub<span class="w"> </span>-S<span class="w"> </span>./sub.sh
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>The <em>newline</em> command creates a new line that will replace the line
+containing <em>myvariable</em> in the script sub.sh
+The <em>oldline=</em> command finds the current line in sub.sh that contains ‘myvariable =’,
+storing it in the variable oldline. This assumes there is exactly one such line,
+otherwise the behavior may be unexpected. Then, sed is used to replace the old
+line with the new line (newline) in <em>sub.sh</em>.</p>
+<p>Then, simply run <em>multi-sub.sh</em> by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>multi-sub.sh
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -196,7 +259,10 @@ oarsub<span class="w"> </span>-S<span class="w"> </span>./myfile.sh
 <li><a class="reference internal" href="#choose-where-to-compile-lammps">Choose where to compile LAMMPS</a></li>
 <li><a class="reference internal" href="#download-lammps">Download LAMMPS</a></li>
 <li><a class="reference internal" href="#compile-lammps">Compile LAMMPS</a></li>
-<li><a class="reference internal" href="#run-lammps">Run LAMMPS</a></li>
+<li><a class="reference internal" href="#run-lammps">Run LAMMPS</a><ul>
+<li><a class="reference internal" href="#launch-multiple-jobs-using-bash">Launch multiple jobs using bash</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -54,20 +54,20 @@ Compile LAMMPS with cmake using guix environment
 --------------
 
 source your guix environment and install the following package(specified the openmpi version, some issues were observed on dahu cluster with openmpi 5)
-.. code-block:: bash
+.. code-block:: guix
 source /applis/site/guix-start.sh
 guix install cmake
 guix install gcc-toolchain
 guix install openmpi@4.1.6
 guix install clang
 guix install ffmpeg
-.. code-block:: bash
+.. code-block:: guix
 navigate into your lammps home, create a folder build and compile :
-.. code-block:: bash
+.. code-block:: cmake
 mkdir build
 cd build 
 cmake ../cmake -D PKG_MOLECULE=on -D PKG_KSPACE=on -D PKG_RIGID=on
-.. code-block:: bash
+.. code-block:: cmake
 
 It creates an executable lmp in the directory. You can add as many packages as you want and create different build if you need it.
 Run LAMMPS

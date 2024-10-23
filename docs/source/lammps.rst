@@ -64,7 +64,7 @@ source your guix environment and install the following package(specified the ope
     guix install clang
     guix install ffmpeg
 
-navigate into your lammps home, create a folder build and compile :
+navigate into your lammps home, create a folder ``build/``. From the ``build/`` folder, compile LAMMPS:
 
 .. code-block::
 

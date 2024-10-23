@@ -70,7 +70,7 @@ navigate into your lammps home, create a folder build and compile :
 
     mkdir build
     cd build 
-    cmake ../cmake -D PKG_MOLECULE=on -D PKG_KSPACE=on -D PKG_RIGID=on ...
+    cmake ../cmake -D PKG_MOLECULE=on -D PKG_KSPACE=on -D PKG_RIGID=on 
 
 It creates an executable lmp in the directory. You can add as many packages as you want and create different build if you need it.
 

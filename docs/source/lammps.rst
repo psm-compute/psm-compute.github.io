@@ -59,6 +59,7 @@ source your guix environment and install the following package(specified the ope
 
     source /applis/site/guix-start.sh
     guix install cmake
+    guix install glibc-locales
     guix install gcc-toolchain
     guix install openmpi@4.1.6
     guix install clang

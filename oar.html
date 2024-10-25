@@ -148,6 +148,21 @@ before starting, using the job ID (<cite>job1_id</cite>).</p>
 </div>
 <p>where username should be replaced by your ID.</p>
 </section>
+<section id="record-the-last-job-id-and-state">
+<h2>Record the last Job ID and state<a class="headerlink" href="#record-the-last-job-id-and-state" title="Link to this heading">¶</a></h2>
+<p>It can be useful to record the ID of the last launched job.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oarsub<span class="w"> </span>-S<span class="w"> </span>./myjob.sh
+oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span>last_job_id.txt
+</pre></div>
+</div>
+<p>where username should be replaced by your ID. The file <cite>last_job_id.txt</cite>
+will contain the ID of the last launched job. You can also record the entire state
+of the job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">last_job_id</span><span class="o">=</span><span class="k">$(</span>oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"> </span>-j<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$last_job_id</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>last_job_state.txt
+</pre></div>
+</div>
+</section>
 <section id="launch-multiple-jobs">
 <h2>Launch Multiple Jobs<a class="headerlink" href="#launch-multiple-jobs" title="Link to this heading">¶</a></h2>
 <p>Here, tips to efficiently launch multiple jobs are provided.</p>
@@ -181,6 +196,7 @@ before starting, using the job ID (<cite>job1_id</cite>).</p>
 <li><a class="reference internal" href="#">OAR tips</a><ul>
 <li><a class="reference internal" href="#submit-jobs-with-dependencies">Submit Jobs with Dependencies</a></li>
 <li><a class="reference internal" href="#cancel-all-your-jobs-at-once">Cancel All Your Jobs at Once</a></li>
+<li><a class="reference internal" href="#record-the-last-job-id-and-state">Record the last Job ID and state</a></li>
 <li><a class="reference internal" href="#launch-multiple-jobs">Launch Multiple Jobs</a></li>
 </ul>
 </li>

@@ -40,6 +40,25 @@ You can cancel all your jobs at once by typing:
 
 where username should be replaced by your ID.
 
+Record the last Job ID and state
+--------------------------------
+
+It can be useful to record the ID of the last launched job.
+
+.. code:: bash
+
+    oarsub -S ./myjob.sh
+    oarstat -u username | awk '{print $1}' | tail -n 1 > last_job_id.txt
+
+where username should be replaced by your ID. The file `last_job_id.txt`
+will contain the ID of the last launched job. You can also record the entire state
+of the job:
+
+.. code:: bash
+
+    last_job_id=$(oarstat -u username | awk '{print $1}' | tail -n 1)
+    oarstat -u username -j "$last_job_id" > last_job_state.txt
+
 Launch Multiple Jobs
 --------------------
 

@@ -137,8 +137,8 @@ tar<span class="w"> </span>-xzvf<span class="w"> </span>lammps.tar.gz
 </pre></div>
 </div>
 </section>
-<section id="compile-lammps">
-<h2>Compile LAMMPS<a class="headerlink" href="#compile-lammps" title="Link to this heading">¶</a></h2>
+<section id="compile-lammps-with-make">
+<h2>Compile LAMMPS with make<a class="headerlink" href="#compile-lammps-with-make" title="Link to this heading">¶</a></h2>
 <p>For compiling in serial, simply navidate to the <code class="docutils literal notranslate"><span class="pre">src/</span></code> folder, and type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>serial
 </pre></div>
@@ -152,6 +152,26 @@ nix-shell<span class="w"> </span>-p<span class="w"> </span>openmpi<span class="w
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>mpi
 </pre></div>
 </div>
+</section>
+<section id="compile-lammps-with-cmake-using-guix-environment">
+<h2>Compile LAMMPS with cmake using guix environment<a class="headerlink" href="#compile-lammps-with-cmake-using-guix-environment" title="Link to this heading">¶</a></h2>
+<p>source your guix environment and install the following package(specified the openmpi version, some issues were observed on dahu cluster with openmpi 5)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">applis</span><span class="o">/</span><span class="n">site</span><span class="o">/</span><span class="n">guix</span><span class="o">-</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">guix</span> <span class="n">install</span> <span class="n">cmake</span>
+<span class="n">guix</span> <span class="n">install</span> <span class="n">glibc</span><span class="o">-</span><span class="n">locales</span>
+<span class="n">guix</span> <span class="n">install</span> <span class="n">gcc</span><span class="o">-</span><span class="n">toolchain</span>
+<span class="n">guix</span> <span class="n">install</span> <span class="n">openmpi</span><span class="o">@</span><span class="mf">4.1.6</span>
+<span class="n">guix</span> <span class="n">install</span> <span class="n">clang</span>
+<span class="n">guix</span> <span class="n">install</span> <span class="n">ffmpeg</span>
+</pre></div>
+</div>
+<p>navigate into your lammps home, create a folder <code class="docutils literal notranslate"><span class="pre">build/</span></code>. From the <code class="docutils literal notranslate"><span class="pre">build/</span></code> folder, compile LAMMPS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>
+<span class="n">cmake</span> <span class="o">../</span><span class="n">cmake</span> <span class="o">-</span><span class="n">D</span> <span class="n">PKG_MOLECULE</span><span class="o">=</span><span class="n">on</span> <span class="o">-</span><span class="n">D</span> <span class="n">PKG_KSPACE</span><span class="o">=</span><span class="n">on</span> <span class="o">-</span><span class="n">D</span> <span class="n">PKG_RIGID</span><span class="o">=</span><span class="n">on</span>
+</pre></div>
+</div>
+<p>It creates an executable lmp in the directory. You can add as many packages as you want and you can create different build if you need it.</p>
 </section>
 <section id="run-lammps">
 <h2>Run LAMMPS<a class="headerlink" href="#run-lammps" title="Link to this heading">¶</a></h2>
@@ -258,7 +278,8 @@ line with the new line (newline) in <em>sub.sh</em>.</p>
 <li><a class="reference internal" href="#">LAMMPS tips</a><ul>
 <li><a class="reference internal" href="#choose-where-to-compile-lammps">Choose where to compile LAMMPS</a></li>
 <li><a class="reference internal" href="#download-lammps">Download LAMMPS</a></li>
-<li><a class="reference internal" href="#compile-lammps">Compile LAMMPS</a></li>
+<li><a class="reference internal" href="#compile-lammps-with-make">Compile LAMMPS with make</a></li>
+<li><a class="reference internal" href="#compile-lammps-with-cmake-using-guix-environment">Compile LAMMPS with cmake using guix environment</a></li>
 <li><a class="reference internal" href="#run-lammps">Run LAMMPS</a><ul>
 <li><a class="reference internal" href="#launch-multiple-jobs-using-bash">Launch multiple jobs using bash</a></li>
 </ul>

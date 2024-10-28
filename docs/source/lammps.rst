@@ -28,7 +28,7 @@ For instance, from the terminal, download the last stable release:
     <a href="https://www.lammps.org/download.html" target="_blank">LAMMPS</a>
 
 
-Compile LAMMPS
+Compile LAMMPS with make
 --------------
 
 For compiling in serial, simply navidate to the ``src/`` folder, and type:
@@ -49,6 +49,32 @@ Then, from the ``src/`` folder, type:
 .. code-block:: bash
 
     make mpi
+
+Compile LAMMPS with cmake using guix environment
+--------------
+
+source your guix environment and install the following package(specified the openmpi version, some issues were observed on dahu cluster with openmpi 5)
+
+.. code-block::
+
+    source /applis/site/guix-start.sh
+    guix install cmake
+    guix install glibc-locales
+    guix install gcc-toolchain
+    guix install openmpi@4.1.6
+    guix install clang
+    guix install ffmpeg
+
+navigate into your lammps home, create a folder ``build/``. From the ``build/`` folder, compile LAMMPS:
+
+.. code-block::
+
+    mkdir build
+    cd build 
+    cmake ../cmake -D PKG_MOLECULE=on -D PKG_KSPACE=on -D PKG_RIGID=on 
+
+It creates an executable lmp in the directory. You can add as many packages as you want and you can create different build if you need it.
+
 
 Run LAMMPS
 ----------

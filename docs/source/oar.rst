@@ -75,3 +75,59 @@ Here, tips to efficiently launch multiple jobs are provided.
     id=`echo "$OAR_JOB_ID - $OAR_ARRAY_ID + 2" | bc -l`  # <---- This id runs from 0 to 50, each job gets one, with which you can e.g. index a bash array
     temperatures=(0.25 0.5 1 .... )
     T=${temperatures[${id}]}
+
+Measure the CPU Usage per User
+------------------------------
+
+This script calculates the total CPU core usage per user based on job information
+from the `oarstat` command. The output will list each user along with the total
+number of CPU cores they are using.
+
+Create a Bash Script (for instance named `cpu_usage.sh`), and copy the
+following lines into the file:
+
+.. code:: bash
+
+    #!/bin/bash
+
+    # Run oarstat and process its output to count the total cores per user
+    oarstat | awk '
+        # Only process lines that start with a job number (indicating a valid job line)
+        /^[0-9]+/ {
+            # $3 is the user, and we look for "R=" to get the core count from any field
+            for (i=1; i<=NF; i++) {
+                if ($i ~ /^R=[0-9]+/) {
+                    # Extract the core count from the "R=" field
+                    split($i, core_count, "=")
+                    user_cores[$3] += core_count[2]  # Accumulate the core count for the user
+                }
+            }
+        }
+        # After processing all lines, print the total cores for each user
+        END {
+            for (user in user_cores) {
+                print user, user_cores[user]  # Output user and their total core count
+            }
+        }
+    ' | sort  # Sort the output alphabetically by username
+
+Run the following command to give execution permissions to the script:
+
+.. code:: bash
+
+    chmod +x cpu_usage.sh
+    ./cpu_usage.sh
+
+It will return something like:
+
+.. code:: bash
+
+    calvof 83
+    farutial 2
+    gravells 160
+    joyeuxm 280
+    jungg 145
+    mhirizn- 3
+    nagasawt 1
+    ozawam 53
+    quilliec 2

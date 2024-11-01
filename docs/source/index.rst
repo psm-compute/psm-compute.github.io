@@ -16,6 +16,7 @@ start a discussion on |GitHub_discussion|.
    oar
    lammps
    git
+   vpn
 
 .. toctree::
    :maxdepth: 1

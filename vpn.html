@@ -6,7 +6,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-        <title>GIT tips &mdash; PSM tips and tricks page</title>
+        <title>VPN tips &mdash; PSM tips and tricks page</title>
     
     <link rel="stylesheet" type="text/css" href="_static/dist/fontawesome.css" />
       <link rel="stylesheet" type="text/css" href="_static/dist/theme.css?v=310cf088" />
@@ -14,8 +14,8 @@
             <link rel="index" title="Index" href="genindex.html" />
             <link rel="search" title="Search" href="search.html" />
             <link rel="top" title="PSM tips and tricks page" href="#" />
-            <link rel="next" title="VPN tips" href="vpn.html" />
-            <link rel="prev" title="LAMMPS tips" href="lammps.html" />
+            <link rel="next" title="Sphinx tips" href="sphinx.html" />
+            <link rel="prev" title="GIT tips" href="git.html" />
     </head>
 <body>
     <script type="text/javascript" src="_static/dist/blocking.js"></script>
@@ -62,8 +62,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="oar.html">OAR tips</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lammps.html">LAMMPS tips</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GIT tips</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vpn.html">VPN tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">GIT tips</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VPN tips</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributors:</span></p>
 <ul>
@@ -88,7 +88,7 @@
                         <nav aria-label="breadcrumb">
     <ol class="breadcrumb m-0 p-0 bg-transparent">
         <li class="breadcrumb-item"><a href="index.html">Docs</a></li>
-        <li class="breadcrumb-item active" aria-current="page">GIT tips</li>
+        <li class="breadcrumb-item active" aria-current="page">VPN tips</li>
     </ol>
 </nav>
                     </div>
@@ -100,11 +100,11 @@
                             <span class="dark-only"><i class="fas fa-sun"></i> Light mode</span>
                             <span class="light-only"><i class="fas fa-moon"></i> Dark mode</span>
                         </button>
-    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/psm-compute/psm-compute.github.io/tree/main/docs/source/git.rst" rel="nofollow">
+    <a class="btn btn-sm btn-light text-decoration-none" href="https://github.com/psm-compute/psm-compute.github.io/tree/main/docs/source/vpn.rst" rel="nofollow">
         <span class="btn-icon"><span class="fab fa-github"></span></span>
         <span class="btn-text">Edit on GitHub</span>
     </a>
-    <a class="btn btn-sm btn-light text-decoration-none" href="_sources/git.rst.txt" rel="nofollow">
+    <a class="btn btn-sm btn-light text-decoration-none" href="_sources/vpn.rst.txt" rel="nofollow">
         <span class="btn-icon"><span class="fas fa-code"></span></span>
         <span class="btn-text">View source</span>
     </a>
@@ -119,92 +119,39 @@
                 <div class="row">
                     <div class="col-12 col-lg-9 order-last order-lg-first rst-content">
                         <main role="main" id="main">
-    <section id="git-tips">
-<span id="id1"></span><h1>GIT tips<a class="headerlink" href="#git-tips" title="Link to this heading">¶</a></h1>
-<p>If you are new to Git and GitHub, this page helps you getting started by explaining
-how to make some modification to a repository. The explaining assumes that you
-are trying to modify this website, but it should work for most repositories.</p>
-<section id="set-up-your-ssh-key">
-<h2>1. Set Up Your SSH Key<a class="headerlink" href="#set-up-your-ssh-key" title="Link to this heading">¶</a></h2>
-<p>To securely connect with GitHub, you’ll need to add your SSH key to your GitHub
-account. <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" target="_blank">here</a>, you can find how to add your public key to your account.</p>
-</section>
-<section id="clone-a-github-repository">
-<h2>2. Clone a GitHub Repository<a class="headerlink" href="#clone-a-github-repository" title="Link to this heading">¶</a></h2>
-<p>If you are not a member of the <cite>psm-compute</cite> organization, fork
-the repository (i.e. create a duplicate of the repository in your own GitHub account),
-then clone it (see below).</p>
-<p>If you are a member, natigate to the <a href="https://github.com/psm-compute/psm-compute.github.io" target="_blank">here</a>, click on <cite>Code</cite>, then copy
-the <cite>SSH</cite> link and clone the repository using  <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:psm-compute/psm-compute.github.io.git
+    <section id="vpn-tips">
+<h1>VPN tips<a class="headerlink" href="#vpn-tips" title="Link to this heading">¶</a></h1>
+<p>To automaticaly connect to the UGA VPN, you can
+create a bash script named <cite>vpn-connect.sh</cite> and
+containing the following information:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Define VPN server, username, password, and group</span>
+<span class="nv">VPN_SERVER</span><span class="o">=</span><span class="s2">&quot;vpn.grenet.fr&quot;</span>
+<span class="nv">VPN_USER</span><span class="o">=</span><span class="s2">&quot;your-username-here&quot;</span>
+<span class="nv">VPN_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your-password-here&quot;</span>
+<span class="nv">VPN_GROUP</span><span class="o">=</span><span class="s2">&quot;Personnels de l&#39; UGA&quot;</span>
+
+<span class="c1"># Path to the log file</span>
+<span class="nv">OCLOG</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/vpn_connection.log&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Connecting to VPN at </span><span class="nv">$VPN_SERVER</span><span class="s2"> with username </span><span class="nv">$VPN_USER</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;You may be prompted for your sudo password if necessary...&quot;</span>
+
+<span class="c1"># Use openconnect with protocol, group, and password provided via echo</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VPN_PASSWORD</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>openconnect<span class="w"> </span>--protocol<span class="o">=</span>anyconnect<span class="w"> </span>--authgroup<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$VPN_GROUP</span><span class="s2">&quot;</span><span class="w"> </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$VPN_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VPN_SERVER</span><span class="s2">&quot;</span><span class="w"> </span>--passwd-on-stdin<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OCLOG</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;VPN connection established. Logs can be found at </span><span class="nv">$OCLOG</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p>This command will create a local copy of the repository on your computer.</p>
-</section>
-<section id="check-the-status-of-your-repository">
-<h2>3. Check the Status of Your Repository<a class="headerlink" href="#check-the-status-of-your-repository" title="Link to this heading">¶</a></h2>
-<p>From you computer, when you start making modifications to the files, it’s a
-you can check the status of your repository to see if there are any changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
-</pre></div>
-</div>
-</section>
-<section id="create-and-switch-to-a-new-branch">
-<h2>4. Create and Switch to a New Branch<a class="headerlink" href="#create-and-switch-to-a-new-branch" title="Link to this heading">¶</a></h2>
-<p>To make changes without affecting the main branch, create a new branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>update_readme
-</pre></div>
-</div>
-<p>and then, switch to the new branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>update_readme
-</pre></div>
-</div>
-</section>
-<section id="edit-files-and-stage-changes">
-<h2>5. Edit Files and Stage Changes<a class="headerlink" href="#edit-files-and-stage-changes" title="Link to this heading">¶</a></h2>
-<p>Make the necessary edits to the files. For example, to edit the <cite>README.md</cite> file,
-use a text editor like <cite>vi</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi<span class="w"> </span>README.md
-</pre></div>
-</div>
-<p>After editing, check the status again to see the changes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
-</pre></div>
-</div>
-<p>Stage the changes to prepare them for commit:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>README.md
-</pre></div>
-</div>
-</section>
-<section id="commit-and-push-changes">
-<h2>6. Commit and Push Changes<a class="headerlink" href="#commit-and-push-changes" title="Link to this heading">¶</a></h2>
-<p>Commit your changes with a descriptive message:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Modified the README.md file&quot;</span>
-</pre></div>
-</div>
-<p>Next, push your changes to GitHub:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
-</pre></div>
-</div>
-<p>If it’s the first time you’re pushing from this branch, you’ll need to set the
-upstream branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>update_readme
-</pre></div>
-</div>
-</section>
-<section id="create-a-pull-request">
-<h2>7. Create a Pull Request<a class="headerlink" href="#create-a-pull-request" title="Link to this heading">¶</a></h2>
-<p>Finally, open your web browser and navigate to the GitHub repository (<a href="https://github.com/psm-compute/psm-compute.github.io" target="_blank">here</a>):
-After pushing your changes, you should see a message indicating the recent
-pushes. Click on <strong>“Compare &amp; pull request”</strong>. On the right side of the page,
-select your reviewers, and add a description if needed. This will create a pull
-request for your changes to be reviewed and merged.</p>
-</section>
-<section id="delete-the-branch-locally-optional">
-<h2>8. Delete the Branch Locally (Optional)<a class="headerlink" href="#delete-the-branch-locally-optional" title="Link to this heading">¶</a></h2>
-<p>Once your changes are merged with the main branch, and if you no longer need the
-branch locally, you can delete it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>update_readme
+<section id="warning">
+<h2>WARNING<a class="headerlink" href="#warning" title="Link to this heading">¶</a></h2>
+<p>You don’t have to save your password in <cite>vpn-connect.sh</cite>.
+If you leave the <cite>VPN_PASSWORD</cite> blank, you will be prompted
+to type your password. If you choose to write your password in
+the file, you can still protect the file using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>vpn-connect.sh
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>vpn-connect.sh
 </pre></div>
 </div>
 </section>
@@ -212,11 +159,11 @@ branch locally, you can delete it:</p>
 
 </main>
                         <nav aria-label="Page navigation" class="py-4 my-5 clearfix font-weight-bold border-top">
-    <a class="float-left" href="lammps.html" title="Previous">
-        <span aria-hidden="true">←&nbsp;</span>LAMMPS tips
+    <a class="float-left" href="git.html" title="Previous">
+        <span aria-hidden="true">←&nbsp;</span>GIT tips
     </a>
-    <a class="float-right" href="vpn.html" title="Next">
-        VPN tips <span aria-hidden="true">&nbsp;→</span>
+    <a class="float-right" href="sphinx.html" title="Next">
+        Sphinx tips <span aria-hidden="true">&nbsp;→</span>
     </a>
 </nav>
                     </div>
@@ -225,15 +172,8 @@ branch locally, you can delete it:</p>
                         <div class="sticky-top toc page-toc" aria-labelledby="page-toc-heading">
                             <p class="font-weight-bold" id="page-toc-heading">Page contents</p>
                             <ul>
-<li><a class="reference internal" href="#">GIT tips</a><ul>
-<li><a class="reference internal" href="#set-up-your-ssh-key">1. Set Up Your SSH Key</a></li>
-<li><a class="reference internal" href="#clone-a-github-repository">2. Clone a GitHub Repository</a></li>
-<li><a class="reference internal" href="#check-the-status-of-your-repository">3. Check the Status of Your Repository</a></li>
-<li><a class="reference internal" href="#create-and-switch-to-a-new-branch">4. Create and Switch to a New Branch</a></li>
-<li><a class="reference internal" href="#edit-files-and-stage-changes">5. Edit Files and Stage Changes</a></li>
-<li><a class="reference internal" href="#commit-and-push-changes">6. Commit and Push Changes</a></li>
-<li><a class="reference internal" href="#create-a-pull-request">7. Create a Pull Request</a></li>
-<li><a class="reference internal" href="#delete-the-branch-locally-optional">8. Delete the Branch Locally (Optional)</a></li>
+<li><a class="reference internal" href="#">VPN tips</a><ul>
+<li><a class="reference internal" href="#warning">WARNING</a></li>
 </ul>
 </li>
 </ul>

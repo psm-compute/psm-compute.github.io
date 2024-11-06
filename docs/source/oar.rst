@@ -79,9 +79,9 @@ Here, tips to efficiently launch multiple jobs are provided.
 Measure the CPU Usage per User
 ------------------------------
 
-This script calculates the total CPU core usage per user based on job information
-from the `oarstat` command. The output will list each user along with the total
-number of CPU cores they are using.
+This script runs `oarstat`, and then calculates the CPU cores per user.
+The output will list each user along with the total
+number of CPU cores they are using (Running and waiting).
 
 Create a Bash Script (for instance named `cpu_usage.sh`), and copy the
 following lines into the file:
@@ -90,26 +90,36 @@ following lines into the file:
 
     #!/bin/bash
 
-    # Run oarstat and process its output to count the total cores per user
     oarstat | awk '
-        # Only process lines that start with a job number (indicating a valid job line)
         /^[0-9]+/ {
-            # $3 is the user, and we look for "R=" to get the core count from any field
+            # $3 is the user, $2 is the job status, and we look for "R=" to get the core count
+            job_status = $2
+            user = $3
+
+            # Find the core count for the job
             for (i=1; i<=NF; i++) {
                 if ($i ~ /^R=[0-9]+/) {
                     # Extract the core count from the "R=" field
                     split($i, core_count, "=")
-                    user_cores[$3] += core_count[2]  # Accumulate the core count for the user
+                    
+                    # Increment cores based on job status (R for running, W for waiting)
+                    if (job_status == "R") {
+                        running_cores[user] += core_count[2]
+                    } else if (job_status == "W") {
+                        waiting_cores[user] += core_count[2]
+                    }
                 }
             }
         }
-        # After processing all lines, print the total cores for each user
+        # After processing all lines, print the total cores for each user for running and waiting jobs
         END {
-            for (user in user_cores) {
-                print user, user_cores[user]  # Output user and their total core count
+            printf "%-10s %-15s %-15s\n", "User", "Running Cores", "Waiting Cores"
+            for (user in running_cores) {
+                printf "%-10s %-15d %-15d\n", user, running_cores[user], waiting_cores[user]
             }
         }
-    ' | sort  # Sort the output alphabetically by username
+    ' | sort
+
 
 Run the following command to give execution permissions to the script:
 
@@ -122,12 +132,13 @@ It will return something like:
 
 .. code:: bash
 
-    calvof 83
-    farutial 2
-    gravells 160
-    joyeuxm 280
-    jungg 145
-    mhirizn- 3
-    nagasawt 1
-    ozawam 53
-    quilliec 2
+    calvof     102             0              
+    farutial   2               0              
+    gravells   100             24             
+    joyeuxm    280             0              
+    jungg      114             0              
+    mhirizn-   4               0              
+    nagasawt   2               0              
+    ozawam     50              0              
+    quilliec   2               0              
+    User       Running Cores   Waiting Cores 

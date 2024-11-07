@@ -180,33 +180,42 @@ oarstat<span class="w"> </span>-u<span class="w"> </span>username<span class="w"
 </section>
 <section id="measure-the-cpu-usage-per-user">
 <h2>Measure the CPU Usage per User<a class="headerlink" href="#measure-the-cpu-usage-per-user" title="Link to this heading">¶</a></h2>
-<p>This script calculates the total CPU core usage per user based on job information
-from the <cite>oarstat</cite> command. The output will list each user along with the total
-number of CPU cores they are using.</p>
+<p>This script runs <cite>oarstat</cite>, and then calculates the CPU cores per user.
+The output will list each user along with the total
+number of CPU cores they are using (Running and waiting).</p>
 <p>Create a Bash Script (for instance named <cite>cpu_usage.sh</cite>), and copy the
 following lines into the file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-<span class="c1"># Run oarstat and process its output to count the total cores per user</span>
 oarstat<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;</span>
-<span class="s1">    # Only process lines that start with a job number (indicating a valid job line)</span>
 <span class="s1">    /^[0-9]+/ {</span>
-<span class="s1">        # $3 is the user, and we look for &quot;R=&quot; to get the core count from any field</span>
+<span class="s1">        # $3 is the user, $2 is the job status, and we look for &quot;R=&quot; to get the core count</span>
+<span class="s1">        job_status = $2</span>
+<span class="s1">        user = $3</span>
+
+<span class="s1">        # Find the core count for the job</span>
 <span class="s1">        for (i=1; i&lt;=NF; i++) {</span>
 <span class="s1">            if ($i ~ /^R=[0-9]+/) {</span>
 <span class="s1">                # Extract the core count from the &quot;R=&quot; field</span>
 <span class="s1">                split($i, core_count, &quot;=&quot;)</span>
-<span class="s1">                user_cores[$3] += core_count[2]  # Accumulate the core count for the user</span>
+
+<span class="s1">                # Increment cores based on job status (R for running, W for waiting)</span>
+<span class="s1">                if (job_status == &quot;R&quot;) {</span>
+<span class="s1">                    running_cores[user] += core_count[2]</span>
+<span class="s1">                } else if (job_status == &quot;W&quot;) {</span>
+<span class="s1">                    waiting_cores[user] += core_count[2]</span>
+<span class="s1">                }</span>
 <span class="s1">            }</span>
 <span class="s1">        }</span>
 <span class="s1">    }</span>
-<span class="s1">    # After processing all lines, print the total cores for each user</span>
+<span class="s1">    # After processing all lines, print the total cores for each user for running and waiting jobs</span>
 <span class="s1">    END {</span>
-<span class="s1">        for (user in user_cores) {</span>
-<span class="s1">            print user, user_cores[user]  # Output user and their total core count</span>
+<span class="s1">        printf &quot;%-10s %-15s %-15s\n&quot;, &quot;User&quot;, &quot;Running Cores&quot;, &quot;Waiting Cores&quot;</span>
+<span class="s1">        for (user in running_cores) {</span>
+<span class="s1">            printf &quot;%-10s %-15d %-15d\n&quot;, user, running_cores[user], waiting_cores[user]</span>
 <span class="s1">        }</span>
 <span class="s1">    }</span>
-<span class="s1">&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w">  </span><span class="c1"># Sort the output alphabetically by username</span>
+<span class="s1">&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort
 </pre></div>
 </div>
 <p>Run the following command to give execution permissions to the script:</p>
@@ -215,15 +224,16 @@ oarstat<span class="w"> </span><span class="p">|</span><span class="w"> </span>a
 </pre></div>
 </div>
 <p>It will return something like:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calvof<span class="w"> </span><span class="m">83</span>
-farutial<span class="w"> </span><span class="m">2</span>
-gravells<span class="w"> </span><span class="m">160</span>
-joyeuxm<span class="w"> </span><span class="m">280</span>
-jungg<span class="w"> </span><span class="m">145</span>
-mhirizn-<span class="w"> </span><span class="m">3</span>
-nagasawt<span class="w"> </span><span class="m">1</span>
-ozawam<span class="w"> </span><span class="m">53</span>
-quilliec<span class="w"> </span><span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>calvof<span class="w">     </span><span class="m">102</span><span class="w">             </span><span class="m">0</span>
+farutial<span class="w">   </span><span class="m">2</span><span class="w">               </span><span class="m">0</span>
+gravells<span class="w">   </span><span class="m">100</span><span class="w">             </span><span class="m">24</span>
+joyeuxm<span class="w">    </span><span class="m">280</span><span class="w">             </span><span class="m">0</span>
+jungg<span class="w">      </span><span class="m">114</span><span class="w">             </span><span class="m">0</span>
+mhirizn-<span class="w">   </span><span class="m">4</span><span class="w">               </span><span class="m">0</span>
+nagasawt<span class="w">   </span><span class="m">2</span><span class="w">               </span><span class="m">0</span>
+ozawam<span class="w">     </span><span class="m">50</span><span class="w">              </span><span class="m">0</span>
+quilliec<span class="w">   </span><span class="m">2</span><span class="w">               </span><span class="m">0</span>
+User<span class="w">       </span>Running<span class="w"> </span>Cores<span class="w">   </span>Waiting<span class="w"> </span>Cores
 </pre></div>
 </div>
 </section>

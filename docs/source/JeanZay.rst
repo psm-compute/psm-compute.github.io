@@ -10,7 +10,7 @@ Examples of sbatch job scripts are provided to run LAMMPS on CPU only and on bot
 
 CPU example
 
-.. code-block::
+.. code-block:: bash
 
   #!/bin/bash
   #SBATCH --nodes=1               # Number of Nodes

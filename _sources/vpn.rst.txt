@@ -13,7 +13,7 @@ containing the following information:
     VPN_SERVER="vpn.grenet.fr"
     VPN_USER="your-username-here"
     VPN_PASSWORD="your-password-here"
-    VPN_GROUP="Personnels de l' UGA"
+    VPN_GROUP="Personnels UGA"
 
     # Path to the log file
     OCLOG="$HOME/vpn_connection.log"
